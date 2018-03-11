@@ -21,23 +21,10 @@ $ pip install -r requirements.txt
 $ python conversation.py
 ```
 
-Please install all the dependices of python script to run the script. We have worked really hard to make sure it worked well, only UI is pretty basic. 
+This will install all the dependices to run the script.
 
-Here you can start with Hi from a chat bot and it will return some output message. Afterwards you can ask him for crop predicition it works on linear regression where we are predicting the amount of crop which can be grown in the given location from a data file.
-
-Afterwards tell us the crops which can be grown and also shares the amount of prdocution which can be predicted if that crop can be grown.
-
-You can ask weather details from the Crop assist and weather you should water the plant or not.
-
-Asking for pesticides. if diseases are given.
-
-MSP of crop can also be asked from the Crop assist, which also works on linear regression.
+You can start with greeting. The chatbot will hence become active. Afterwards you can ask him for crop predicition, MSP, irrigation queries, pesticides and weather for the asked location. It works on linear regression where we are predicting the amount of crop which can be grown in the given location from a data file.
 
 Hope this helps! 
 
-for any query please comment below.
-
-```
-
-$ python conversation.py
-```
+for any query please comment.
