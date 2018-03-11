@@ -3,8 +3,23 @@ Upaj - IBM Watson Crop Assist
 ===
 
 How to :
+How to :
 
 Download pywapi from https://launchpad.net/python-weather-api/trunk/0.3.8/+download/pywapi-0.3.8.tar.gz
+
+Extract pywapi and install it using command.
+
+```
+$ python setup.py install 
+
+```
+Then go to the project folder and do the following.
+
+```
+$ pip install -r requirements.txt
+
+$ python conversation.py
+```
 
 Please install all the dependices of python script to run the script. We have worked really hard to make sure it worked well, only UI is pretty basic. 
 
