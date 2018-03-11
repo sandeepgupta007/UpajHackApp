@@ -16,7 +16,11 @@ You can ask weather details from the Crop assist and weather you should water th
 
 Asking for pesticides. if diseases are given.
 
+MSP of crop can also be asked from the Crop assist, which also works on linear regression.
 
+Hope this helps! 
+
+for any query please comment below.
 
 ```
 
