@@ -2,4 +2,4 @@ watson-developer-cloud
 requests
 beautifulsoup4
 sklearn
-csv
+scipy
