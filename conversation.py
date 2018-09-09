@@ -26,10 +26,13 @@ conversation = watson_developer_cloud.ConversationV1(
     version='2018-03-08'
 )
 
-workspace_id = 'b1d807f3-080c-4b9a-bdee-dead8ed75a1b'
+def get_response(chat):
+    workspace_id = 'b1d807f3-080c-4b9a-bdee-dead8ed75a1b'
+    response = conversation.message(workspace_id=workspace_id, input={'text': chat})
+    return response
 
-# 
-# Simple linear Regression 
+#
+# Simple linear Regression
 #
 def load_csv(filename):
 	dataset = list()
@@ -83,7 +86,7 @@ def loc(): # to be completed
 	return a
 
 #
-# Weather 
+# Weather
 #
 
 def probable_location(location_ID):
@@ -105,8 +108,7 @@ def probable_location(location_ID):
 def weather_intent(chat):
 	output1 = ""
 	output2 = ""
-	response = conversation.message(workspace_id=workspace_id, input={
-	    'text': chat})
+	response = get_response(chat)
 	if(location != -1): # location not available
 		location_ID = pywapi.get_location_ids(location)
 		loc_id = probable_location(location_ID)
@@ -160,8 +162,7 @@ def weather_intent(chat):
 
 def pesticide(chat):
 	output = ""
-	response = conversation.message(workspace_id=workspace_id, input={
-	    'text': chat})
+	response = get_response(chat)
 	val = str(-1)
 	for i in response['entities']:
 		if(i['entity'] != [] and i['entity'] == 'disease'):
@@ -212,7 +213,7 @@ def crop_forecasting():
 	data = []
 	data = load_csv('crop_production.csv')
 	now = datetime.datetime.now()
-	
+
 	if(now.month >= 7 and now.month <= 10):
 		season = 'kharif'
 	elif(now.month >= 10 and now.month <= 11):
@@ -234,7 +235,7 @@ def crop_forecasting():
 			data[i][3] = data[i][3].strip()
 			data[i][1] = str(data[i][1].lower())
 			data[i][1] = data[i][1].strip()
-			if(str(location.lower()) == data[i][1]  and season.lower() == data[i][3].lower()):	
+			if(str(location.lower()) == data[i][1]  and season.lower() == data[i][3].lower()):
 				try:
 					Crop[data[i][4]]=1
 					# Production.append(float(data[i][6])/float(data[i][5]))
@@ -250,7 +251,7 @@ def crop_forecasting():
 				data[j][3] = data[j][3].strip()
 				data[j][1] = str(data[j][1].lower())
 				data[j][1] = data[j][1].strip()
-				if(str(location.lower()) == data[j][1]  and season.lower() == data[j][3].lower() and i == data[j][4]):	
+				if(str(location.lower()) == data[j][1]  and season.lower() == data[j][3].lower() and i == data[j][4]):
 					try:
 						Production.append(float(data[j][6])/float(data[j][5]))
 						Year.append(data[j][2])
@@ -279,7 +280,7 @@ def crop_forecasting():
 	if(output2 == ""):
 		return (output1)
 	else:
-		return (output2)	
+		return (output2)
 
 def msp(crop):
 	output = ""
@@ -328,8 +329,7 @@ def msp(crop):
 
 def cost(chat):
 	output = ""
-	response = conversation.message(workspace_id=workspace_id, input={
-	    'text': chat})
+	response = get_response(chat)
 	print (response)
 	crop_data = str(-1)
 	if(response['entities'] != []):
@@ -347,12 +347,11 @@ def cost(chat):
 	# data = load_csv('crop_production.csv')
 	# msp_cost = []
 
-	# print (response['entit'])	
+	# print (response['entit'])
 
 
 def greeting(chat):
-	response = conversation.message(workspace_id=workspace_id, input={
-	    'text': chat})
+	response = get_response(chat)
 	for i in response['output']:
 		if(i == 'text'):
 			return(str(response['output']['text'][0]))
@@ -367,7 +366,7 @@ def msg_type(chat,intent,values,entities,text):
 	#print (json_output)
 	if(intent == 'greetings'):
 		return greeting(chat)
-		
+
 	elif(intent == 'weather'):
 		return weather_intent(chat)
 
@@ -384,8 +383,7 @@ def msg_type(chat,intent,values,entities,text):
 		return pesticide(chat)
 
 def resp(chat):
-	response = conversation.message(workspace_id=workspace_id, input={
-	    'text': chat})
+	response = get_response(chat)
 	#response = json.dumps(response)
 	for i in response:
 		if(str(i) == 'entities'):
@@ -471,7 +469,7 @@ class TkinterGUIExample(tk.Tk):
         	time.sleep(1)
         	sys.exit()
 
-        
+
 gui_example = TkinterGUIExample()
 gui_example.mainloop()
 
