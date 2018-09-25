@@ -162,6 +162,7 @@ def pesticide(chat):
 	output = ""
 	response = conversation.message(workspace_id=workspace_id, input={
 	    'text': chat})
+	print(response)
 	val = str(-1)
 	for i in response['entities']:
 		if(i['entity'] != [] and i['entity'] == 'disease'):
@@ -395,6 +396,7 @@ def resp(chat):
 						#print (j['value'])
 						location = j['value']
 						print (location)
+						print(response)
 						#break
 			#print (response['entities'])
 
@@ -461,7 +463,7 @@ class TkinterGUIExample(tk.Tk):
         self.usr_input.delete(0, tk.END)
 
         response = resp(user_input)
-        #print (response)
+        print (response)
         self.conversation['state'] = 'normal'
         self.conversation.insert(
             tk.END, "Human: " + user_input + "\n" + "ChatBot: " + str(response) + "\n"

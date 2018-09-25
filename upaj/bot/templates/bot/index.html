@@ -7,14 +7,21 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  {% load static %}
+  
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+    
+
 </head>
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="" class="brand-logo">
-        <img src="logo.png" style="height: 9vh; width: auto;">
+        <img src="{% static 'logo.png' %}" style="height: 9vh; width: auto;">
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
@@ -42,7 +49,7 @@
 
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="{% static 'background1.jpg' %}" alt="Unsplashed background img 1"></div>
   </div>
 
 
@@ -91,7 +98,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="{% static 'background2.jpg' %}" alt="Unsplashed background img 2"></div>
   </div>
 
  <!--  <div class="container">
@@ -168,10 +175,13 @@
       <div class="messages">
         <div class="messages-content"></div>
       </div>
-      <div class="message-box">
-        <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-        <button type="submit" class="message-submit">Send</button>
-      </div>
+      <form action="{% url 'get_response' %}" method = "post">
+        {% csrf_token %}
+        <div class="message-box">
+          <input type="text" name="query" placeholder="Type message...">
+          <button type="submit" class="message-submit">Send</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -179,10 +189,14 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="js/message.js"></script>
+  <!-- <script src="js/message.js"></script>
   <script src="js/jquery.slidereveal.min.js"></script>
   <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
+  <script src="js/init.js"></script> -->
+  <script type="text/javascript" src = "{% static 'init.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'jquery.slidereveal.min.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'materialize.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'materialize.min.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'message.js' %}"></script>
   </body>
 </html>
