@@ -44,12 +44,12 @@ def get_response(chat):
     response = conversation.message(workspace_id=workspace_id, input={'text': chat})
     return response
 
-def main(chat):
+def main(query):
 
     intents = []
     entities = []
 
-    watson_replies = get_response(chat)
+    watson_replies = get_response(query)
     response = watson_replies.result
     pprint(response)
 
@@ -92,11 +92,17 @@ def greeting(response):
 
 def weather(entities):
 
+    ''' returns weather conditions '''
+
     location = entities[0]['value']
     location_id = location_suggestions(location)
 
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
+
+    response = "Temperature : " + weather_data['current_conditions']['temperature'] + "C" + " Humidity : " + weather_data['current_conditions']['humidity'] + " Wind Speed : " + weather_data['current_conditions']['wind']['speed']
+
+    return response
 
 
 def location_suggestions(location):

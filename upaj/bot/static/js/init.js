@@ -18,37 +18,12 @@ var slider = $('#chat-pane').slideReveal({
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-$("#get-response").on('submit', function(event){
+$('.message-submit').click(function(event){
     event.preventDefault();
 
-    query = $('input[name="query"]').val();
-    csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
-
-    $.ajax({
-        type: 'POST',
-        url: '/response',
-        data: {
-            'query' : query,
-            'csrfmiddlewaretoken': csrfmiddlewaretoken,
-        },
-        success: function(data){
-                console.log("success");
-              $('<div class="message loading new"><figure class="avatar"><img src="chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-              updateScrollbar();
-
-              setTimeout(function() {
-                $('.message.loading').remove();
-                $('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                setDate();
-                updateScrollbar();
-                i++;
-              }, 1000 + (Math.random() * 20) * 100);
-        },
-        error: function(data, err){
-
-        }
-    });
+    insertMessage();
 });
+
 
 // Messaging Interactions for Chat Pane
 
@@ -81,6 +56,31 @@ function setDate(){
 }
 
 function insertMessage() {
+    query = $('textarea[name="message-input"]').val();
+    csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/response',
+        data: {
+            'query' : query,
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+        },
+        success: function(data){
+            console.log("success");
+            console.log(data);
+
+            $('.message.loading').remove();
+            $('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            setDate();
+            updateScrollbar();
+            i++;
+        },
+        error: function(data, err){
+
+        }
+    });
+
   msg = $('.message-input').val();
   if ($.trim(msg) == '') {
     return false;
@@ -89,14 +89,8 @@ function insertMessage() {
   setDate();
   $('.message-input').val(null);
   updateScrollbar();
-  setTimeout(function() {
     fakeMessage();
-  }, 1000 + (Math.random() * 20) * 100);
 }
-
-$('.message-submit').click(function() {
-  insertMessage();
-});
 
 $(window).on('keydown', function(e) {
   if (e.which == 13) {
@@ -104,5 +98,13 @@ $(window).on('keydown', function(e) {
     return false;
   }
 })
+
+function fakeMessage() {
+  if ($('.message-input').val() != '') {
+    return false;
+  }
+  $('<div class="message loading new"><figure class="avatar"><img src="chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+  updateScrollbar();
+}
 
 

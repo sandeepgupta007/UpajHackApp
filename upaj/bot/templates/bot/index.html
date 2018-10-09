@@ -144,19 +144,17 @@
       <div class="chat-title">
         <h1>Upaj</h1>
         <h2>Here to Help</h2>
+        {% csrf_token %}
         <figure class="avatar">
-          <img src="{% static 'chathead.png' %}" /></figure>
+          <img src="chathead.png" /></figure>
       </div>
       <div class="messages">
         <div class="messages-content"></div>
       </div>
-        <form id="get-response">
-          {% csrf_token %}
-        <div class="message-box">
-          <input type="text" name="query" placeholder="Type message...">
-          <button type="submit" class="message-submit">Send</button>
-        </div>
-      </form>
+      <div class="message-box">
+        <textarea type="text" class="message-input" name="message-input" placeholder="Type message..."></textarea>
+        <button type="submit" class="message-submit">Send</button>
+      </div>
     </div>
   </div>
 

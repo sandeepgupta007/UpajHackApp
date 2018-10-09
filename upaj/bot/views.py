@@ -8,6 +8,13 @@ def home(request):
     return render(request, 'bot/index.html')
 
 def get_response(request):
-    chat = request.POST['query']
-    response = cn.main(chat)
+    query = request.POST['query']
+
+    response = cn.main(query)
+
+    # try:
+    #     response = cn.main(query)
+    # except:
+    #     response = "Sorry, I can't process right now!"
+
     return HttpResponse(response)
