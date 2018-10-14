@@ -17,4 +17,4 @@ def get_response(request):
     # except:
     #     response = "Sorry, I can't process right now!"
 
-    return HttpResponse(response)
+    return JsonResponse(response, safe=False)

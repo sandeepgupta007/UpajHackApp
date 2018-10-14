@@ -59,16 +59,16 @@ def main(query):
     for entity in response['entities']:
         entities.append(entity)
 
-    return msg_type(intents, entities, response)
+    return message_type(intents, entities, response)
 
 
-def msg_type(intents, entities, response):
+def message_type(intents, entities, response):
 
     if 'greetings' in intents:
         return greeting(response)
 
     if 'weather' in intents:
-        return weather(entities)
+        return location_suggestions(entities)
 
     if 'crop_forecasting' in intents:
         return crop_forecasting(entities)
@@ -82,20 +82,24 @@ def msg_type(intents, entities, response):
     if 'goodbyes' in intents:
         return bye()
 
+    if [] == intents:
+        return rephrase(response)
+
+def rephrase(response):
+
+    ''' asks user to rephrase itself'''
+
+    return response_encoder(response['output']['text'])
+
 def greeting(response):
 
     ''' returns greetings messages'''
 
-    for text in response['output']['text']:
-        return text
+    return response_encoder(response['output']['text'])
 
+def weather(location_id):
 
-def weather(entities):
-
-    ''' returns weather conditions '''
-
-    location = entities[0]['value']
-    location_id = location_suggestions(location)
+    ''' returns weather conditions for a given location '''
 
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
@@ -105,18 +109,19 @@ def weather(entities):
     return response
 
 
-def location_suggestions(location):
+def location_suggestions(entities):
 
     ''' facilitates search of location '''
+
+    location = entities[0]['value']
 
     data = pywapi.get_location_ids(location)
     if len(data) is 1:
         for loc_id, location in data.items():
-            return loc_id
+            return weather(loc_id)
     else:
         print ('There are number quite a few location with similar set of name, please be specific')
-        for loc_id, location in data.items():
-            print(location)
+        return response_encoder(data)
 
 
 def pesticide(entities):
@@ -138,6 +143,25 @@ def cost(entities):
     crop_data = entities[0][['value']]
     output = msp(crop_data)
     print(output)
+
+
+def response_encoder(response):
+
+    ''' encodes message to the proper format '''
+
+    message = {}
+    message['bubbles'] = 1
+    message['text'] = []
+
+    if type(response) == str:
+        message['text'].append('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + response + '</div>')
+    elif type(response) == dict:
+        for key, value in response.items():
+            message['text'].append('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + value + '</div>')
+
+        message['bubbles'] = len(response)
+
+    return message
 
 
 # def crop_forecasting(): # pass entities in this later

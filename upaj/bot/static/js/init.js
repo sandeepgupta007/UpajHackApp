@@ -67,14 +67,15 @@ function insertMessage() {
             'csrfmiddlewaretoken': csrfmiddlewaretoken,
         },
         success: function(data){
-            console.log("success");
+          
             console.log(data);
-
-            $('.message.loading').remove();
-            $('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            setDate();
-            updateScrollbar();
-            i++;
+            for (i=0; i<data['bubbles']; i++) {
+              $('.message.loading').remove();
+              $(data['text'][i]).appendTo($('.mCSB_container')).addClass('new');
+              setDate();
+              updateScrollbar();
+              i++;
+            }
         },
         error: function(data, err){
 
@@ -106,5 +107,3 @@ function fakeMessage() {
   $('<div class="message loading new"><figure class="avatar"><img src="chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
   updateScrollbar();
 }
-
-
