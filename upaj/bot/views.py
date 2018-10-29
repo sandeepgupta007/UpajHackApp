@@ -10,7 +10,7 @@ def home(request):
 def get_response(request):
     query = request.POST['query']
 
-    response = cn.main(query)
+    response = cn.chatDriver(query)
 
     # try:
     #     response = cn.main(query)

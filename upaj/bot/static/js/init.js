@@ -32,7 +32,7 @@ var $messages = $('.messages-content'),
     i = 0;
 
 $(window).load(function() {
-
+    $messages.mCustomScrollbar();
 });
 
 $messages.mCustomScrollbar();
@@ -67,7 +67,7 @@ function insertMessage() {
             'csrfmiddlewaretoken': csrfmiddlewaretoken,
         },
         success: function(data){
-          
+
             console.log(data);
             for (i=0; i<data['bubbles']; i++) {
               $('.message.loading').remove();
