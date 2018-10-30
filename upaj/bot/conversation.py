@@ -20,18 +20,6 @@ from sklearn.tree import DecisionTreeClassifier
 
 DATA_GOV_API ='579b464db66ec23bdd000001f4159aa056f849bb6c7922a7a5c2cc99'
 
-
-def load_csv(filename):
-    dataset = list()
-    with open(filename, 'r') as file:
-        csv_reader = reader(file)
-        for row in csv_reader:
-            if not row:
-                continue
-            dataset.append(row)
-    return dataset
-
-
 conversation = watson_developer_cloud.ConversationV1(
 
     username='6c3fe2ff-40bd-4cc4-968a-a2d5f282e5ec',
@@ -55,9 +43,12 @@ def chatDriver(query):
     entities = []
 
     if sidestep_watson is False:
-        watson_replies = get_response(query)
-        response = watson_replies.result
-        pprint(response)
+        try:
+            watson_replies = get_response(query)
+            response = watson_replies.result
+            pprint(response)
+        except:
+            return response_encoder('Sorry! Not available right now.')
     else:
         pass
 
@@ -81,7 +72,7 @@ def chatDriver(query):
         minimum_support_price_prediction(response)
 
     if 'pesticide' in intents:
-        pesticide(entities)
+        return pesticide(entities)
 
     if 'goodbyes' in intents:
         bye()
@@ -133,13 +124,9 @@ def pesticide(entities):
     ''' returns pesticide information '''
 
     value = entities[0]['value']
-    data = load_csv('csv_files/pesticides.csv')
-    print(data)
-    pest = str(-1)
-    for i in range(1,len(data)):
-        if (data[i][0].lower() == value.lower()):
-            pest = data[i][1].lower()
-            break
+    pesticide = pd.read_csv('csv_files/pesticides.csv')
+    data = pesticide.loc[pesticide['disease'] == value]
+    return response_encoder(data.iloc[0]['pesticide'])
 
 def minimum_support_price_prediction(response):
 
@@ -185,10 +172,8 @@ def minimum_support_price_prediction(response):
     return response_encoder(output)
 
 def crop_forecasting():
-	output1 = ""
-	output2 = ""
-	data = []
-	data = load_csv('crop_production.csv')
+
+	data = pd.read_csv('csv_files/crop_production.csv')
 	now = datetime.datetime.now()
 
 	if(now.month >= 7 and now.month <= 10):
