@@ -37,20 +37,15 @@ def get_response(chat):
 
 def chatDriver(query):
 
-    sidestep_watson = False
-
     intents = []
     entities = []
 
-    if sidestep_watson is False:
-        try:
-            watson_replies = get_response(query)
-            response = watson_replies.result
-            pprint(response)
-        except:
-            return response_encoder('Sorry! Not available right now.')
-    else:
-        pass
+    try:
+        watson_replies = get_response(query)
+        response = watson_replies.result
+        pprint(response)
+    except:
+        return response_encoder('Sorry! Not available right now.')
 
     for intent in response['intents']:
         intents.append(intent['intent'])
@@ -62,23 +57,22 @@ def chatDriver(query):
         return greeting(response)
 
     if 'weather' in intents:
-        sidestep_watson = True
-        location_suggestions(entities)
+        return location_suggestions(entities)
 
     if 'crop_forecasting' in intents:
-        crop_forecasting(entities)
+        return crop_forecasting(entities)
 
     if 'cost' in intents:
-        minimum_support_price_prediction(response)
+        return minimum_support_price_prediction(response)
 
     if 'pesticide' in intents:
         return pesticide(entities)
 
     if 'goodbyes' in intents:
-        bye()
+        return bye()
 
     if not intents:
-        rephrase(response)
+        return rephrase(response)
 
 # Functions are defined below
 
@@ -96,28 +90,38 @@ def greeting(response):
 
 def weather(location_id):
 
-    ''' returns weather conditions for a given location '''
+    ''' returns weather conditions for a given location id '''
 
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
 
-    response = "Temperature : " + weather_data['current_conditions']['temperature'] + "C" + " Humidity : " + weather_data['current_conditions']['humidity'] + " Wind Speed : " + weather_data['current_conditions']['wind']['speed']
+    response = {}
+    response['temperature'] = "Temperature : " + str(weather_data['current_conditions']['temperature']) + " C"
+    response['humidity'] = "Humidity : " + str(weather_data['current_conditions']['humidity'])
+    response['windspeed'] = "Wind Speed : " + str(weather_data['current_conditions']['wind']['speed'])
 
     return response
 
 def location_suggestions(entities):
 
     ''' facilitates search of location '''
-
-    location = entities[0]['value']
+    try:
+        location = entities[0]['value']
+    except:
+        location = entities
 
     data = pywapi.get_location_ids(location)
+    print(data)
     if len(data) is 1:
         for loc_id, location in data.items():
-            return weather(loc_id)
+            return response_encoder(weather(loc_id))
     else:
-        print ('There are number quite a few location with similar set of name, please be specific')
-        return response_encoder(data)
+        for loc_id, location in data.items():
+            if 'India' in location:
+                return response_encoder(weather(loc_id))
+            else:
+                print ('There are number quite a few location with similar set of name, please be specific')
+                return response_encoder(data)
 
 def pesticide(entities):
 
