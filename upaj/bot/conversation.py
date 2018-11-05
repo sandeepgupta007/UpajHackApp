@@ -91,7 +91,6 @@ def greeting(response):
 def weather(location_id):
 
     ''' returns weather conditions for a given location id '''
-
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
 
