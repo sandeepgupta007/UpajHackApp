@@ -1,0 +1,821 @@
+crops,Perilla
+crops,Jobster
+crops,Bean
+crops,Lentil
+crops,Colocosia
+crops,Kapas
+crops,Total foodgrain
+crops,Water Melon
+crops,Other Citrus Fruit
+crops,Cauliflower
+crops,Coffee
+crops,Tea
+crops,Pump Kin
+crops,Snak Guard
+crops,Jack Fruit
+crops,Drum Stick
+crops,Bitter Gourd
+crops,Rubber
+crops,Cardamom
+crops,Cashewnut Raw
+crops,Cashewnut Processed
+crops,Atcanut (Raw)
+crops,Arcanut (Processed)
+crops,Redish
+crops,Carrot
+crops,Turnip
+crops,Cond-spcs other
+crops,Other Cereals & Millets
+crops,Moth
+crops,Guar seed
+crops,Khesari
+crops,Barley
+crops,Pineapple
+crops,Paddy
+crops,Blackgram
+crops,Peas & beans (Pulses)
+crops,Jute
+crops,Pulses total
+crops,Oilseeds total
+crops,Ginger
+crops,Garlic
+crops,Varagu
+crops,Sannhamp
+crops,Bottle Gourd
+crops,Niger seed
+crops,Peas  (vegetable)
+crops,Cabbage
+crops,Sapota
+crops,Pome Granet
+crops,Lemon
+crops,Mesta
+crops,Rapeseed &Mustard
+crops,Tomato
+crops,Pome Fruit
+crops,Papaya
+crops,Other Vegetables
+crops,Other Fresh Fruits
+crops,other fibres
+crops,Orange
+crops,Mango
+crops,Grapes
+crops,Cucumber
+crops,Citrus Fruit
+crops,Brinjal
+crops,Bhindi
+crops,Soyabean
+crops,Other  Rabi pulses
+crops,Potato
+crops,Coriander
+crops,Small millets
+crops,Samai
+crops,other misc. pulses
+crops,Onion
+crops,Safflower
+crops,Linseed
+crops,Sesamum
+crops,Masoor
+crops,Wheat
+crops,Gram
+crops,Tobacco
+crops,Ragi
+crops,Korra
+crops,Jowar
+crops,Horse-gram
+crops,Castor seed
+crops,Bajra
+crops,Sunflower
+crops,Groundnut
+crops,Urad
+crops,Moong(Green Gram)
+crops,Maize
+crops,Turmeric
+crops,other oilseeds
+crops,Dry chillies
+crops,Black pepper
+crops,Tapioca
+crops,Sweet potato
+crops,Sugarcane
+crops,Dry ginger
+crops,Coconut
+crops,Cashewnut
+crops,Banana
+crops,Rice
+crops,Other Kharif pulses
+crops,Arecanut
+crops,Cotton
+crops,Arhar,tuar,tur
+crops,Beans,mutter,matar
+crops,Cowpea,lobia
+crops,Jute & mesta
+crops,Other Dry Fruit
+crops,Ber
+crops,Litchi
+crops,Plums
+crops,Pear
+crops,Peach
+crops,Apple
+crops,Yam
+crops,Ribed Guard
+crops,Lab-Lab
+crops,Beet Root
+crops,Ash Gourd
+crops,Ricebean (nagadal)
+crops,Rajmash Kholar
+disease,helicoverpa
+disease,sigatoka
+disease,beetle
+disease,insect
+disease,blight
+disease,rust
+disease,grasshopper
+disease,heliothis
+disease,warm
+disease,diamond back moth
+disease,sanjose scale
+disease,late blight
+disease,stemborer
+disease,catterpillar
+disease,borer
+disease,red heiry caterpillar
+location,Bhagalpur
+location,Panchmahal
+location,Ambedkar Nagar
+location,Thanjavur
+location,Bhilwara
+location,Sabarkantha
+location,Giridih
+location,Latur
+location,Jabalpur
+location,Basti
+location,Faizabad
+location,Tiruvannamalai
+location,Tirupur
+location,Amritsar
+location,Mirzapur
+location,Firozabad
+location,Mayurbhanj
+location,Kannur
+location,Bellary
+location,Mathura
+location,Bharatpur
+location,Nizamabad
+location,Siddharthnagar
+location,Gopalganj
+location,Gulbarga
+location,Ajmer
+location,Beed
+location,Buldhana
+location,Cuddalore
+location,Barmer
+location,Cuttack
+location,Kollam
+location,Fatehpur
+location,Raigad
+location,Bilaspur
+location,Sikar
+location,Tumkur
+location,Dhanbad
+location,Srikakulam
+location,Tiruchirappalli
+location,Bhojpur
+location,Adilabad
+location,Junagadh
+location,Yavatmal
+location,Khammam
+location,Araria
+location,Palakkad
+location,Sangli
+location,Cooch Behar
+location,Nagaon
+location,Kanyakumari
+location,Nalanda
+location,Bhavnagar
+location,Kadapa
+location,Amravati
+location,Patiala
+location,Ranchi
+location,Purulia
+location,Begusarai
+location,Rohtas
+location,Sri Potti Sriramulu Nellore
+location,Mysore
+location,Uttar Dinajpur
+location,Shahjahanpur
+location,Satara
+location,Medak
+location,Udaipur
+location,Katihar
+location,Tirunelveli
+location,Kozhikode
+location,Deoria
+location,Thrissur
+location,Unnao
+location,Banaskantha
+location,Mumbai City
+location,Rajkot
+location,Pratapgarh
+location,Ballia
+location,Barabanki
+location,Indore
+location,Purnia
+location,Ernakulam
+location,Thiruvananthapuram
+location,Nagaur
+location,Siwan
+location,Durg
+location,Nanded
+location,Prakasam
+location,Raebareli
+location,Sitamarhi
+location,Gonda
+location,Meerut
+location,Viluppuram
+location,Saharanpur
+location,Coimbatore
+location,Salem
+location,Nalgonda
+location,Ludhiana
+location,Vaishali
+location,Bulandshahr
+location,Birbhum
+location,Ganjam
+location,Warangal
+location,Kushinagar
+location,Bankura
+location,Ghazipur
+location,Vadodara
+location,North West Delhi
+location,Alwar
+location,Aligarh
+location,Varanasi
+location,Bijnor
+location,Jodhpur
+location,Aurangabad
+location,Budaun
+location,Tiruvallur
+location,Sultanpur
+location,Karimnagar
+location,Jalpaiguri
+location,Kolhapur
+location,Darbhanga
+location,Vellore
+location,West Godavari
+location,West Champaran
+location,Saran
+location,Kanchipuram
+location,Madurai
+location,Maldah
+location,Hyderabad
+location,Lakhimpur Kheri
+location,Mahbubnagar
+location,Kurnool
+location,Raipur
+location,Anantapur
+location,Hardoi
+location,Malappuram
+location,Muzaffarnagar
+location,Chittoor
+location,Jalgaon
+location,Samastipur
+location,Visakhapatnam
+location,Solapur
+location,Gaya
+location,Agra
+location,Purba Medinipur
+location,Gorakhpur
+location,Bareilly
+location,Sitapur
+location,Madhubani
+location,Jaunpur district
+location,Delhi,east delhi,west delhi,north west delhi,south delhi,south west delhi,north east delhi,central delhi,new delhi
+location,Maharajganj
+location,Kolkata
+location,Krishna
+location,Ahmednagar
+location,Kanpur Nagar
+location,Lucknow
+location,Azamgarh
+location,Nagpur
+location,Ghaziabad
+location,Chennai
+location,Moradabad
+location,Belgaum
+location,Muzaffarpur
+location,Howrah
+location,Guntur
+location,Surat
+location,East Champaran
+location,Paschim Medinipur
+location,East Godavari
+location,Nadia
+location,Ranga Reddy
+location,Hooghly
+location,Patna
+location,Allahabad
+location,Nashik
+location,Jaipur
+location,Murshidabad
+location,Ahmedabad
+location,Bardhaman
+location,South 24 Parganas
+location,Mumbai suburban
+location,Pune
+location,Bangalore Urban
+location,North 24 Parganas
+location,Thane
+location,Amethi,Chhatrapati Shahuji Maharaj Nagar
+location,South West Garo Hills
+location,Agar
+location,Shahdara
+location,Mungeli
+location,Kondagaon
+location,Gariaband
+location,Baloda Bazar
+location,Balod
+location,Longding
+location,Palghar
+location,Bemetara
+location,Shamli
+location,Fazilka
+location,Dibang Valley
+location,Anjaw
+location,Lahaul and Spiti
+location,Upper Siang
+location,Nicobar
+location,Mahe
+location,North Sikkim
+location,Tawang
+location,Longleng
+location,Diu
+location,Lower Dibang Valley
+location,Yanam
+location,Saiha
+location,Lakshadweep
+location,Serchhip
+location,Kiphire
+location,East Kameng
+location,Lower Subansiri
+location,Kolasib
+location,Upper Subansiri
+location,Kinnaur
+location,Mamit
+location,West Kameng
+location,Kurung Kumey
+location,East Siang
+location,North and Middle Andaman
+location,South West Khasi Hills
+location,Tirap
+location,West Siang
+location,Lawngtlai
+location,North Garo Hills
+location,East Jaintia Hills
+location,Champhai
+location,New Delhi
+location,West Sikkim
+location,Tamenglong
+location,Narayanpur
+location,Zunheboto
+location,South Garo Hills
+location,Kargil
+location,Chandel
+location,Lohit
+location,South Sikkim
+location,Leh
+location,Changlang
+location,Lunglei
+location,Phek
+location,Peren
+location,Wokha
+location,Papum Pare
+location,Ukhrul
+location,Daman
+location,Mokokchung
+location,Karaikal
+location,Dima Hasao
+location,Dang
+location,Kishtwar
+location,Rudraprayag
+location,South Andaman
+location,Bishnupur
+location,Sukma
+location,Bijapur
+location,Ri Bhoi
+location,Champawat
+location,Mon
+location,Bageshwar
+location,Shopian
+location,Kohima
+location,West Jaintia Hills
+location,Churachandpur
+location,Unokoti
+location,East Sikkim
+location,Ramban
+location,Ganderbal
+location,Debagarh (Deogarh)
+location,Reasi
+location,East Garo Hills
+location,Samba
+location,Khowai
+location,Uttarkashi
+location,Dadra and Nagar Haveli
+location,Senapati
+location,Dhalai
+location,Dimapur
+location,Bandipora
+location,West Khasi Hills
+location,Chamoli
+location,Aizawl
+location,Doda
+location,Tuensang
+location,North Tripura
+location,Thoubal
+location,Surguja
+location,Kulgam
+location,South Tripura
+location,Gomati
+location,Kullu
+location,Boudh (Bauda)
+location,Imphal East
+location,Lohardaga
+location,Poonch
+location,Chirang
+location,Sepahijala
+location,Pithoragarh
+location,Imphal West
+location,Chamba
+location,Una
+location,Sirmaur
+location,Khunti
+location,Dantewada
+location,Kodagu
+location,Udhampur
+location,Panchkula
+location,Perambalur
+location,Pulwama
+location,Harda
+location,Gajapati
+location,Solan
+location,Jharsuguda
+location,Kabirdham (formerly Kawardha)
+location,Porbandar
+location,Narmada
+location,Barnala
+location,Simdega
+location,Fatehgarh Sahib
+location,Nuapada
+location,Malkangiri
+location,Shahid Bhagat Singh Nagar
+location,Kathua
+location,Tehri Garhwal
+location,Faridkot
+location,Rajouri
+location,Almora
+location,Sheikhpura
+location,South Goa
+location,West Garo Hills
+location,Umaria
+location,Subarnapur,Sonepur
+location,Botad
+location,Sheohar
+location,Koriya
+location,Hailakandi
+location,Surajpur
+location,Jaisalmer
+location,Rupnagar
+location,Pauri Garhwal
+location,Sheopur
+location,Dhemaji
+location,Arwal
+location,Dindori
+location,Koderma
+location,Latehar
+location,Alirajpur
+location,Kandhamal
+location,Bongaigaon
+location,Nilgiris
+location,Badgam
+location,Kanker
+location,Anuppur
+location,Ariyalur
+location,Devbhoomi Dwarka
+location,Burhanpur
+location,Mansa
+location,Nalbari
+location,Datia
+location,Jamtara
+location,Dhamtari
+location,Tapi
+location,Shimla
+location,Wayanad
+location,Kapurthala
+location,North Goa
+location,East Khasi Hills
+location,Neemuch
+location,Udalguri
+location,Ashok Nagar
+location,Sindhudurg
+location,Jashpur
+location,Kupwara
+location,Mahoba
+location,Kokrajhar
+location,Rewari
+location,Pakur
+location,Sri Muktsar Sahib
+location,Darrang
+location,West Tripura
+location,Mahendragarh
+location,Fatehabad
+location,Pondicherry
+location,Ramgarh
+location,Baksa
+location,Nainital
+location,Jhajjar
+location,Morigaon
+location,Morbi
+location,Rayagada
+location,Nayagarh
+location,Kurukshetra
+location,Karbi Anglong
+location,Sahibzada Ajit Singh Nagar
+location,Bangalore Rural
+location,Chitrakoot
+location,Moga
+location,Mahisagar
+location,Mandi
+location,Lakhisarai
+location,Goalpara
+location,Baramulla
+location,Panna
+location,Chamarajnagar
+location,Jhabua
+location,Gumla
+location,Mahasamund
+location,Sirohi
+location,Palwal
+location,Lakhimpur
+location,Chatra
+location,Sambalpur
+location,Aravalli
+location,Mandla
+location,Chandigarh
+location,Golaghat
+location,Rohtak
+location,Seraikela Kharsawan
+location,Shahdol
+location,Gadag
+location,Anantnag
+location,Gadchiroli
+location,Chhota Udaipur
+location,Kaithal
+location,Karur
+location,Ramanagara
+location,Mewat
+location,Jorhat
+location,Narsinghpur
+location,Hamirpur
+location,Idukki
+location,Bundi
+location,Shravasti
+location,Tarn Taran
+location,Jehanabad
+location,Sidhi
+location,Jagatsinghpur
+location,Ambala
+location,Chikkamagaluru
+location,Sahibganj
+location,Sivasagar
+location,Rajsamand
+location,Yadgir
+location,Udupi
+location,Singrauli
+location,Hingoli
+location,Dhenkanal
+location,Pathanamthitta
+location,Washim
+location,Bhandara
+location,Panipat
+location,Korba
+location,Dholpur
+location,Yamuna Nagar
+location,Karimganj
+location,Gir Somnath
+location,Lalitpur
+location,Nabarangpur
+location,Baran
+location,Guna
+location,Hoshangabad
+location,Theni
+location,Chikkaballapur
+location,Kamrup Metropolitan
+location,Damoh
+location,Tiruvarur
+location,Srinagar
+location,Angul
+location,Katni
+location,Sirsa
+location,Wardha
+location,Bagpat
+location,Kasaragod
+location,Khandwa,East Nimar
+location,Sehore
+location,Godda
+location,Tinsukia
+location,Dumka
+location,Gondia
+location,Garhwa
+location,Dibrugarh
+location,Navsari
+location,Raisen
+location,Jind
+location,Ramanathapuram
+location,Sawai Madhopur
+location,Mandsaur
+location,Sivaganga
+location,Patan
+location,Uttara Kannada
+location,Munger
+location,Auraiya
+location,Koraput
+location,Seoni
+location,Barwani
+location,Gandhinagar
+location,Bathinda
+location,Dungapur
+location,Koppal
+location,Jhalawar
+location,Bastar
+location,Tonk
+location,Kanshi Ram Nagar
+location,Kendrapara
+location,Tikamgarh
+location,Hapur,Panchsheel Nagar
+location,Ratlam
+location,Vidisha
+location,Karauli
+location,Bargarh,Baragarh
+location,Sonipat
+location,Deoghar
+location,Raigarh
+location,West Singhbhum
+location,Dharmapuri
+location,Karnal
+location,Bhadrak
+location,Kangra
+location,Shajapur
+location,Amreli district
+location,Gurgaon
+location,Kamrup
+location,Jammu
+location,Rajnandgaon
+location,Kolar
+location,Chittorgarh
+location,Rajgarh
+location,Bharuch
+location,Sant Ravidas Nagar
+location,Dewas
+location,Hathras
+location,Kalahandi
+location,Betul
+location,Etawah
+location,Hoshiarpur
+location,Kaushambi
+location,Haveri district
+location,Ratnagiri
+location,Nagapattinam
+location,Janjgir-Champa
+location,Kaimur
+location,Bhiwani
+location,Dausa
+location,Nandurbar
+location,Udham Singh Nagar
+location,Balangir
+location,Sangrur
+location,Khagaria
+location,Kannauj
+location,Osmanabad
+location,Chitradurga
+location,Jalaun
+location,Dakshin Dinajpur
+location,Gautam Buddh Nagar
+location,Kishanganj
+location,Barpeta
+location,Puri
+location,Dehradun
+location,Alipurduar
+location,Bidar
+location,Balaghat
+location,Valsad
+location,Bhind
+location,Buxar
+location,Sant Kabir Nagar
+location,Namakkal
+location,Shivpuri
+location,Hazaribag
+location,Cachar
+location,Thoothukudi
+location,Hissar
+location,Shimoga
+location,Surendranagar
+location,Jamui
+location,Etah
+location,Chhatarpur
+location,Hassan
+location,Hanumangarh
+location,Kanpur Dehat
+location,Banswara
+location,Faridabad
+location,Banda
+location,Kendujhar
+location,Mandya
+location,Akola
+location,Jajpur
+location,Jalore
+location,Parbhani
+location,Jyotiba Phule Nagar
+location,Darjeeling
+location,Dharwad
+location,Mainpuri
+location,Sonbhadra
+location,Khargone
+location,Krishnagiri
+location,Farrukhabad
+location,Bagalkot
+location,Saharsa
+location,Pudukkottai
+location,Raichur
+location,Sonitpur
+location,Haridwar
+location,Palamu
+location,Virudhunagar
+location,Davanagere
+location,Dhubri
+location,Kota
+location,Chandauli
+location,Jalna
+location,Morena
+location,Ganganagar
+location,Kottayam
+location,Ujjain
+location,Madhepura
+location,Pathankot
+location,Jhansi
+location,Firozpur
+location,Mehsana
+location,Banka
+location,Gwalior
+location,Pilibhit
+location,Pali
+location,Churu
+location,Dhule
+location,Bokaro
+location,Sundargarh
+location,Dakshina Kannada
+location,Anand
+location,Chhindwara
+location,Kutch
+location,Alappuzha
+location,Dahod
+location,Jhunjhunu
+location,Balrampur
+location,Jamnagar
+location,Dindigul
+location,Vijayapura
+location,Jalandhar
+location,Dhar
+location,Chandrapur
+location,Mau
+location,Nawada
+location,Sambhal
+location,Supaul
+location,Satna
+location,Khordha
+location,Erode
+location,East Singhbhum
+location,Kheda
+location,Gurdaspur
+location,Balasore
+location,Rampur
+location,Vizianagaram
+location,Rewa
+location,Bikaner
+location,Bhopal
+location,Sagar
+location,Bahraich
+msp,msp,min support price,min support value,minimum support price,minimum support value,minimum support rate,min support rate,min selling value,min selling price,minimum selling price,minimum selling value,selling price,support price,selling value,selling rate,support rate,support value
+season,kharif,khareef,khaarif,khaareef,khariph,khareeph,kharef,july,june,august,september
+season,summer,zaid,jayed,jaid,jaaid,jayad,april,may,june
+season,rabi,raabi,rabii,december,october,november,january,february,march
+time,tuesday
+time,monday
+time,wednesday
+time,next month
+time,tomorrow,next day
+time,sunday
+time,today
+time,saturday
+time,friday
+time,thursday
+weather,wind direction
+weather,rain,varsha,raining
+weather,wind speed,air speed,air velocity,air quality,wind details,air details
