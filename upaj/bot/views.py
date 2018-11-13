@@ -20,6 +20,8 @@ prod = []
 rain_year = []
 rain = []
 total_states = []
+
+
 def home(request):
     global crop
     global prod
@@ -38,18 +40,18 @@ def home(request):
     for d in data['state']:
         if(d not in total_states):
             total_states.append(d)
-    print("helllloooooo")
-    print(total_states)
+    # print("helllloooooo")
+    # print(total_states)
     try:
         if(request.method == "POST"):
             state = request.POST['state']
-            print(state)
+            # print(state)
         elif(state == ""):
             state = "madhya pradesh"
     
         if(request.method == "POST"):
             year = request.POST['year']
-            print(year)
+            # print(year)
             if(year == ""):
                 year = 2010
     except:
@@ -78,8 +80,8 @@ def home(request):
     for y in data['YEAR']:
         rain_year.append(str(y))
 
-    print(rain)
-    print(rain_year)
+    # print(rain)
+    # print(rain_year)
 
     object = {
         "crop" : crop,
@@ -100,33 +102,33 @@ def get_response(request):
 
     return JsonResponse(response, safe=False)
 
-def plot(request):
+# def plot(request):
     
 
-    # df = pd.DataFrame({'production' : prod}, index = crop)
-    # plot = df.plot.pie(y='production', figsize=(10, 10))
-    # print(plot)
-    return render(request, 'bot/index.html', {"crop" : crop, "prod" : prod, "state" : state, "year" : year})
+#     # df = pd.DataFrame({'production' : prod}, index = crop)
+#     # plot = df.plot.pie(y='production', figsize=(10, 10))
+#     # print(plot)
+#     return render(request, 'bot/index.html', {"crop" : crop, "prod" : prod, "state" : state, "year" : year})
 
-def rainfall_patterns(request):
-    global rain
-    global rain_year
-    rain = []
-    rain_year = []
-    if(request.method == "POST"):
-        rain_state = request.POST['rain_state']
-        if(rain_state == ""):
-            rain_state = "madhya pradesh"
+# def rainfall_patterns(request):
+#     global rain
+#     global rain_year
+#     rain = []
+#     rain_year = []
+#     if(request.method == "POST"):
+#         rain_state = request.POST['rain_state']
+#         if(rain_state == ""):
+#             rain_state = "madhya pradesh"
     
-    data = pd.read_csv('csv_files/rainfall_data.csv')
-    data = data.loc[data['SUBDIVISION'] == rain_state]
-    data = data.fillna(data.mean())
+#     data = pd.read_csv('csv_files/rainfall_data.csv')
+#     data = data.loc[data['SUBDIVISION'] == rain_state]
+#     data = data.fillna(data.mean())
     
-    for r in data['ANNUAL']:
-        rain.append(r)
-    for y in data['YEAR']:
-        rain_year.append(str(y))
+#     for r in data['ANNUAL']:
+#         rain.append(r)
+#     for y in data['YEAR']:
+#         rain_year.append(str(y))
 
-    print(rain)
-    print(rain_year)
-    return render(request, 'bot/index.html', {"rain" : rain, "rain_year" : rain_year, "rain_state" : rain_state})
+#     # print(rain)
+#     # print(rain_year)
+#     return render(request, 'bot/index.html', {"rain" : rain, "rain_year" : rain_year, "rain_state" : rain_state})
