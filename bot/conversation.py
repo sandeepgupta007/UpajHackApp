@@ -109,7 +109,7 @@ def location_suggestions(entities):
     except:
         location = entities
 
-    data = pywapi.get_location_ids(location)
+    data = pywapi.get_location_id(location)
     print(data)
     if len(data) is 1:
         for loc_id, location in data.items():
