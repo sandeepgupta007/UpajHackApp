@@ -29,7 +29,6 @@ from distutils.core import setup
 __author__ = 'qetzal@gmail.com, jtasker@gmail.com'
 from pywapi import __version__
 
-
 setup(name='pywapi',
     version=__version__,
     description='Python wrapper around different weather APIs',
