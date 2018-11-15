@@ -256,10 +256,10 @@ def response_encoder(response):
     message['text'] = []
 
     if type(response) == str:
-        message['text'].append('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + response + '</div>')
+        message['text'].append('<div class="message new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure>' + response + '</div>')
     elif type(response) == dict:
         for key, value in response.items():
-            message['text'].append('<div class="message new"><figure class="avatar"><img src="chathead.png" /></figure>' + value + '</div>')
+            message['text'].append('<div class="message new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure>' + value + '</div>')
 
         message['bubbles'] = len(response)
 

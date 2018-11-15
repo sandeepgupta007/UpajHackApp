@@ -12,12 +12,11 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css">
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script>
     var latlngo = {lat : "", long : ""};
-  navigator.geolocation.getCurrentPosition(function(position) {
-    // latlngo.lat = position.coords.latitude.toString();
-    // latlngo = position.coords.latitude + ' ' + position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(function(position) {
 
     const Http = new XMLHttpRequest();
     const url='https://dev.virtualearth.net/REST/v1/Locations/'+position.coords.latitude + ',' + position.coords.longitude + '?key=AoTJ0es6QeGwvVw9Fb4LCrAhUtdt6ZeDN-eWENSWR8ddNEWPWQ0pTvsA1HZ1ktJj';
@@ -25,6 +24,7 @@
     Http.send();
     result = "";
     flag = 0;
+
     Http.onreadystatechange=function(){
       result = Http.responseText;
       var obj = JSON.parse(result);
@@ -59,6 +59,7 @@
           src.appendChild(img);
         }
       }
+
       result = "";
       const protocol = new XMLHttpRequest();
       const url_forecast = 'http://api.weatherunlocked.com/api/forecast/23.17,80.02?app_id=c8fc446a&app_key=b774914ba609ae0aacbb827fc88d64a4';
@@ -68,22 +69,19 @@
         result = protocol.responseText;
         var object = JSON.parse(result)
         var i;
-        for(i = 0; i < 5; i++){
+        for(i = 0; i < 7; i++){
           var data_in = object["Days"][i.toString()];
-          var data_insert = 'day' + (i+1).toString();
+          var data_insert = 'day' + (i).toString();
           var data2 = data_insert + '_data';
           var data3 = data_insert + '_data2';
-          var data_rise = "rise" + (i+1).toString();
-          var data_set = "set" + (i+1).toString();
+          var data_rise = "rise" + (i).toString();
+          var data_set = "set" + (i).toString();
           document.getElementById(data_insert).innerHTML = data_in["date"];
           document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
           document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
           document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
           document.getElementById(data_set).innerHTML = data_in["sunset_time"];
         }
-        // parser = new DOMParser();
-        // xmlDoc = parser.parseFromString(result);
-        // document.getElementById("demo").innerHTML = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
       }
     }
   });
@@ -183,6 +181,7 @@
 </head>
 
 <body>
+  <!-- Navigation Bar -->
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="" class="brand-logo">
@@ -193,7 +192,9 @@
       </ul>
     </div>
   </nav>
+  <!-- End NavBar -->
 
+  <!-- First Parallax Container -->
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
@@ -211,49 +212,53 @@
     </div>
     <div class="parallax"><img src="{% static 'images/back.jpg' %}"></div>
   </div>
+  <!-- End Parallax Container -->
 
-  <div class="owl-carousel">
-          <div class="collection-item avatar">
-            <i class="material-icons circle green"><img src="{% static 'images/sunny.png'%}"></i>
-            <b><span class="title" id = "day1"></span></b>
-            <p>Max : <span id="day1_data"></span>    Min : <span id="day1_data2"></span>
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </div>
+  <!-- Start Weather Forecast -->
+  <div class="row">
+    <div class="col s8 offset-s2">
 
-          <div class="collection-item avatar">
-            <i class="material-icons circle green"><img src="{% static 'images/sunny.png'%}"></i>
-            <b><span class="title" id = "day2"></span></b>
-            <p>Max : <span id="day2_data"></span>     Min : <span id="day2_data2"></span>
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </div>
+      <div class="owl-carousel weather-forecast">
+        {% for i in "xxxxxxx" %}
+        <div class="weather-forecast-card">
+          <center>
+            <h6 id="day{{ forloop.counter0 }}"></h6>
+            <div><span class="mdi mdi-weather-sunny mdi-48px" style="padding: 2vw;"></span></div>
 
-          <div class="collection-item avatar">
-            <i class="material-icons circle green"><img src="{% static 'images/sunny.png'%}"></i>
-            <b><span class="title" id = "day3"></span></b>
-            <p>Max : <span id="day3_data"></span>    Min : <span id="day3_data2"></span>
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </div>
+            <div class="weather-forecast-data">
+              <div class="weather-forecast-data-sub row">
+                <span class="mdi mdi-thermometer-lines mdi-36px"></span>
+                <div style="padding-right: 3vw;">
+                  Max : <span id="day{{ forloop.counter0 }}_data"></span>
+                  <br>
+                  Min : <span id="day{{ forloop.counter0 }}_data2"></span>
+                </div>
+              </div>
 
-          <div class="collection-item avatar">
-              <i class="material-icons circle green"><img src="{% static 'images/sunny.png'%}"></i>
-              <b><span class="title" id = "day4"></span></b>
-              <p>Max : <span id="day4_data"></span>    Min : <span id="day4_data2"></span>
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </div>
-          <div class="collection-item avatar">
-              <i class="material-icons circle green"><img src="{% static 'images/sunny.png'%}"></i>
-              <b><span class="title" id = "day5"></span></b>
-              <p>Max : <span id="day5_data"></span>    Min : <span id="day5_data2"></span>
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </div>
+              <div class="weather-forecast-data-sub row">
+                <span class="mdi mdi-weather-sunset-up mdi-36px"></span>
+                <div>
+                  Sunrise : <span id="rise{{ forloop.counter0 }}"></span>am
+                  <br>
+                  Sunset : <span id="set{{ forloop.counter0 }}"></span>pm
+                </div>
+              </div>
+            </div>
+          </center>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="col s2"></div>
+    </div>
   </div>
+  <!-- End Weather Forecast -->
 
-  <div class="container" style="float:left;" >
+  <!-- Start Info Section -->
+
+  <div class="container">
     <div class="section">
 
       <!--   Icon Section   -->
@@ -272,7 +277,7 @@
             <h2 class="center brown-text"><img src="{% static 'images/m-cloudy.png' %}" height="120vh" width = "auto"></h2>
             <h5 class="center">Weather Today</h5>
 
-            <p class="light"><b><center>You are at <span id='loc'></span>.<br> Today's temperature is <span id='temp'></span><sup> o</sup>C<br> Humidity: <span id='humidity'></span>% <br></center></b></p>
+            <p class="light"><b><center>You are at <span id='loc'></span>.<br> Current temperature is <span id='temp'></span><sup> o</sup>C<br> Humidity: <span id='humidity'></span>% <br></center></b></p>
           </div>
         </div>
 
@@ -288,6 +293,17 @@
 
     </div>
   </div>
+
+  <!-- Second Parallax Conatiner -->
+  <div class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/back.jpg' %}"></div>
+  </div>
+  <!-- End Parallax Container -->
 
 
 
@@ -310,7 +326,7 @@
           </div>
 
           <div class="col s24 m8">
-              <div id="chartContainer" style="width: 50vw; height: 50vh;"></div>
+              <div class="chart" id="chartContainer"></div>
 
           </div>
         </div>
@@ -336,64 +352,18 @@
                 </div>
 
             <div class="col s24 m8">
-                <div id="chartContainer2" style="width: 50vw; height: 50vh;"></div>
+                <div class="chart" id="chartContainer2"></div>
 
             </div>
           </div>
         </div>
       </div>
 
-
-
- <div class="container" style="display : none;">
-    <div class="header"><img src="{% static 'images/weather_report.png'%}" height="50vh"></div>
-    <div class="card" style="width:12vw; float: left;">
-        <center>
-        <div class="card-body" style="background-color: darkcyan; color: white;">
-            <b><h6 class="card-title" id="day1"></h6></b>
-            <strong>Max : <span id="day1_data"></span><br>Min : <span id="day1_data2"></span><br>Sunrise : <span id="rise1"></span>am<br>Sunset : <span id="set1"></span>pm</strong>
-        </div>
-      </center>
-    </div>
-    <div class="card" style="width:12vw; float: left;">
-        <center>
-        <div class="card-body" style="background-color: darkcyan; color: white;">
-            <h6 class="card-title" style = "font:20px;" id="day2"></h6>
-            <strong>Max : <span id="day2_data"></span><br>Min : <span id="day2_data2"></span><br>Sunrise : <span id="rise2"></span>am<br>Sunset : <span id="set2"></span>pm</strong>
-        </div>
-      </center>
-    </div>
-    <div class="card" style="width:12vw;float: left;">
-        <center>
-        <div class="card-body" style="background-color: darkcyan; color: white;">
-            <h6 class="card-title" style = "font:20px;" id="day3"></h6>
-            <strong>Max : <span id="day3_data"></span><br>Min : <span id="day3_data2"></span><br>Sunrise : <span id="rise3"></span>am<br>Sunset : <span id="set3"></span>pm</strong>
-        </div>
-      </center>
-    </div>
-    <div class="card" style="width:12vw; float: left;">
-        <center>
-        <div class="card-body" style="background-color: darkcyan; color: white;">
-            <h6 class="card-title" style = "font:20px;" id="day4"></h6>
-            <strong>Max : <span id="day4_data"></span><br>Min : <span id="day4_data2"></span><br>Sunrise : <span id="rise4"></span>am<br>Sunset : <span id="set4"></span>pm</strong>
-        </div>
-      </center>
-    </div>
-    <div class="card" style="width:12vw; float: left;">
-        <center>
-        <div class="card-body" style="background-color: darkcyan; color: white;">
-            <h6 class="card-title" style = "font:20px;" id="day5"></h6>
-            <strong>Max : <span id="day5_data"></span><br>Min : <span id="day5_data2"></span><br>Sunrise : <span id="rise5"></span>am<br>Sunset : <span id="set5"></span>pm</strong>
-        </div>
-      </center>
-    </div>
-  </div>
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <h5 class="header col s12 light"></h5>
         </div>
       </div>
     </div>
@@ -421,9 +391,9 @@
         <div class="col l3 s12">
           <h5 class="white-text">Developers</h5>
           <ul>
-            <li><a class="white-text" href="#!">Devang Mehta</a></li>
+            <li><a class="white-text" href="https://github.com/MehtaDevang">Devang Mehta</a></li>
             <li><a class="white-text" href="https://github.com/anuj97">Anuj Upadhyay</a></li>
-            <li><a class="white-text" href="#!">Noman</a></li>
+            <li><a class="white-text" href="https://github.com/nmnme">Noman</a></li>
           </ul>
         </div>
       </div>
@@ -435,7 +405,7 @@
     </div>
   </footer>
 
-  <!-- Slider Chat Pane -->
+  <!-- STart Slider Chat Pane -->
   <div id="chat-pane">
     <div class="chat">
       <div class="chat-title">
@@ -454,9 +424,10 @@
       </div>
     </div>
   </div>
+  <!-- End Slider Chat Pane -->
 
 
-  <!--  Scripts-->
+  <!--  Start Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js"></script>
   <script type="text/javascript" src = "{% static 'js/jquery.slidereveal.min.js' %}"></script>
@@ -464,5 +435,6 @@
   <script type="text/javascript" src = "{% static 'js/materialize.min.js' %}"></script>
   <script src="{% static 'js/owl.carousel.min.js' %}"></script>
   <script type="text/javascript" src = "{% static 'js/init.js' %}"></script>
+  <!-- End Scripts -->
 </body>
 </html>

@@ -479,4 +479,49 @@ Bounce
 }
 
 
+/* Chart */
+
+@media only screen and (max-width : 600px) {
+  .chart {
+    height: 50vh;
+    width: 90vw;
+  }
+}
+
+@media only screen and (min-width : 601px) {
+  .chart {
+    height: 50vh;
+    width: 50vw;
+  }
+}
+
+.weather-forecast {
+
+}
+
+.weather-forecast-card {
+  margin: 2vw;
+  border: 2px solid black;
+  padding: 0.4vw;
+}
+
+.weather-forecast-data {
+  /*float: left;*/
+  /*padding: 5vw;*/
+}
+
+.weather-forecast-data-sub {
+
+}
+
+.weather-forecast-data-sub > span {
+  padding-left: 4vw;
+  float: left;
+}
+
+.weather-forecast-data-sub > div {
+  float: left;
+  padding-left: 1.2vw;
+}
+
 

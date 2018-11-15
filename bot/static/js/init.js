@@ -68,7 +68,6 @@ function insertMessage() {
         },
         success: function(data){
 
-            console.log(data);
             for (i=0; i<data['bubbles']; i++) {
               $('.message.loading').remove();
               $(data['text'][i]).appendTo($('.mCSB_container')).addClass('new');
@@ -109,7 +108,18 @@ function fakeMessage() {
 }
 
 $(document).ready(function(){
-  $(".owl-carousel").owlCarousel();
+  $(".owl-carousel").owlCarousel({
+    stagePadding : 30,
+    responsive : {
+      10 : {
+          items : 1,
+      },
+      768 : {
+          items : 3,
+      }
+    },
+    dots : true,
+  });
 });
 
 
