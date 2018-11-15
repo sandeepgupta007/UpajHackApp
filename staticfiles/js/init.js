@@ -104,12 +104,9 @@ function fakeMessage() {
   if ($('.message-input').val() != '') {
     return false;
   }
-  $('<div class="message loading new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+  $('<div class="message loading new"><figure class="avatar"><img src="chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
   updateScrollbar();
 }
 
-$(document).ready(function(){
-  $(".owl-carousel").owlCarousel();
-});
 
 
