@@ -1,3 +1,5 @@
+// Initialization for Chat Pane Slider
+
 var slider = $('#chat-pane').slideReveal({
     trigger: $('.trigger'),
     width: '90%',
@@ -7,16 +9,22 @@ var slider = $('#chat-pane').slideReveal({
     overlayColor: 'rgba(0,0,0,0.5)',
 });
 
+// End Initialization for Chat Pane Slider
+
 // Materialize JS
 
 (function($){
   $(function(){
-
     $('.sidenav').sidenav();
     $('.parallax').parallax();
+  });
+})(jQuery);
 
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+$(document).ready(function(){
+  $('select').formSelect();
+});
+
+// End Materialize
 
 $('.message-submit').click(function(event){
     event.preventDefault();
@@ -36,9 +44,6 @@ $(window).load(function() {
 });
 
 $messages.mCustomScrollbar();
-setTimeout(function() {
-  fakeMessage();
-}, 100);
 
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -58,6 +63,7 @@ function setDate(){
 function insertMessage() {
     query = $('textarea[name="message-input"]').val();
     csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+    fakeMessage();
 
     $.ajax({
         type: 'POST',
@@ -89,7 +95,7 @@ function insertMessage() {
   setDate();
   $('.message-input').val(null);
   updateScrollbar();
-    fakeMessage();
+  fakeMessage();
 }
 
 $(window).on('keydown', function(e) {
@@ -107,6 +113,8 @@ function fakeMessage() {
   updateScrollbar();
 }
 
+// Owl Initialization
+
 $(document).ready(function(){
   $(".owl-carousel").owlCarousel({
     stagePadding : 30,
@@ -122,4 +130,24 @@ $(document).ready(function(){
   });
 });
 
+// End Owl Initialization
 
+// Loader Js
+
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+// Loader Js End
+
+
+// Chart
+
+$('select').formSelect('methodName');
