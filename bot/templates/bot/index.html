@@ -17,7 +17,7 @@
         // latlngo = position.coords.latitude + ' ' + position.coords.longitude;
 
         const Http = new XMLHttpRequest();
-        const url='http://dev.virtualearth.net/REST/v1/Locations/'+position.coords.latitude + ',' + position.coords.longitude + '?key=AoTJ0es6QeGwvVw9Fb4LCrAhUtdt6ZeDN-eWENSWR8ddNEWPWQ0pTvsA1HZ1ktJj';
+        const url='https://dev.virtualearth.net/REST/v1/Locations/'+position.coords.latitude + ',' + position.coords.longitude + '?key=AoTJ0es6QeGwvVw9Fb4LCrAhUtdt6ZeDN-eWENSWR8ddNEWPWQ0pTvsA1HZ1ktJj';
         Http.open("GET", url);
         Http.send();
         result = "";
@@ -31,7 +31,7 @@
           const http = new XMLHttpRequest();
           var lat = position.coords.latitude;
           var lon = position.coords.longitude;
-          const url_weather = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric';
+          const url_weather = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric';
           http.open("POST", url_weather);
           http.send();
           res = "";
