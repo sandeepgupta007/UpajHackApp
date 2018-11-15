@@ -1,12 +1,5 @@
-import sys
 import watson_developer_cloud
 import pywapi
-from bs4 import BeautifulSoup
-import xml.etree.ElementTree as ET
-from math import sqrt
-from random import seed
-from random import randrange
-from csv import reader
 import datetime
 import time
 from scipy import stats
@@ -16,7 +9,7 @@ from pprint import pprint
 import pandas as pd
 import json
 
-from sklearn.tree import DecisionTreeClassifier
+# from sklearn.tree import
 
 DATA_GOV_API ='579b464db66ec23bdd000001f4159aa056f849bb6c7922a7a5c2cc99'
 
@@ -71,8 +64,7 @@ def chatDriver(query):
     if 'goodbyes' in intents:
         return bye()
 
-    if not intents:
-        return rephrase(response)
+    return rephrase(response)
 
 # Functions are defined below
 
@@ -80,7 +72,7 @@ def rephrase(response):
 
     ''' asks user to rephrase itself'''
 
-    return response_encoder(response['output']['text'][0])
+    return response_encoder("Did not understand! Please try again.")
 
 def greeting(response):
 
@@ -108,9 +100,11 @@ def location_suggestions(entities):
         location = entities[0]['value']
     except:
         location = entities
+    try:
+        data = pywapi.get_location_id(location)
+    except:
+        return response_encoder("Sorry! The location is not covered.")
 
-    data = pywapi.get_location_id(location)
-    print(data)
     if len(data) is 1:
         for loc_id, location in data.items():
             return response_encoder(weather(loc_id))
@@ -128,14 +122,16 @@ def pesticide(entities):
 
     value = entities[0]['value']
     pesticide = pd.read_csv('csv_files/pesticides.csv')
-    data = pesticide.loc[pesticide['disease'] == value]
-    return response_encoder(data.iloc[0]['pesticide'])
+    try:
+        data = pesticide.loc[pesticide['disease'] == value]
+        return response_encoder(data.iloc[0]['pesticide'])
+    except:
+        return response_encoder("No data for the specified disease! Please try after some time.")
 
 def minimum_support_price_prediction(response):
 
     ''' provides a predicted minimum support price '''
 
-    print(response['entities'][0])
     crop = response['entities'][0]['value']
 
     dataframe = pd.read_csv('csv_files/crops.csv')
@@ -159,19 +155,16 @@ def minimum_support_price_prediction(response):
 
     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
 
-    print (slope, intercept, r_value, p_value, std_err)
-
     try:
     	current_year = now.year
     	predicition = current_year*slope + intercept
 
     	if(predicition <= 0):
-    		print (' * ')
     		output = str('Sorry! no prediction avialable')
     	else:
-    		output = str('Minimum selling price of '+ crop+ ' ' +str(predicition))
+    		output = str('The minimum selling price of ' + crop + ' is \u20B9' +str(predicition.round()))
     except:
-    	output = str('Sorry! no prediction avialable')
+    	output = str('Sorry! no prediction available')
     return response_encoder(output)
 
 def crop_forecasting():
@@ -262,8 +255,6 @@ def response_encoder(response):
             message['text'].append('<div class="message new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure>' + value + '</div>')
 
         message['bubbles'] = len(response)
-
-    print(message)
 
     return message
 
