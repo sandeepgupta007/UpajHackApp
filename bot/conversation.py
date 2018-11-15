@@ -53,7 +53,7 @@ def chatDriver(query):
     for entity in response['entities']:
         entities.append(entity)
 
-    if 'hello' in intents:
+    if 'greetings' in intents:
         return greeting(response)
 
     if 'weather' in intents:
