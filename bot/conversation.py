@@ -1,12 +1,13 @@
 import watson_developer_cloud
 import pywapi
-import datetime, time, requests, json
-from bs4 import BeautifulSoup
+import datetime
+import time
 from scipy import stats
 import numpy as np
 from sklearn import datasets,linear_model
 from pprint import pprint
 import pandas as pd
+import json
 
 # from sklearn.tree import
 
