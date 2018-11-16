@@ -8,6 +8,8 @@ from sklearn import datasets,linear_model
 from pprint import pprint
 import pandas as pd
 import json
+import requests
+from bs4 import BeautifulSoup
 
 # from sklearn.tree import
 
@@ -79,7 +81,7 @@ def cultivation(response):
     r = requests.get(base+search)
     soup = BeautifulSoup(r.text,'html.parser')
     vids = soup.findAll('a',attrs={'class':'yt-uix-tile-link'})
-    
+
     video_link = ""
     count = 0
     for v in vids:
@@ -88,7 +90,7 @@ def cultivation(response):
         video_link = temp
         if(count > 0):
             break
-    
+
     hyperlink_format = '<a href="{link}" target="{target}">{text}</a>'
     hyperlink_format = hyperlink_format.format(link=video_link, text='click here', target="_blank")
     return response_encoder("You may visit this link for information about '" + search + "\n" + hyperlink_format)
@@ -122,17 +124,19 @@ def location_suggestions(entities):
 
     ''' facilitates search of location '''
     print(entities[0]["value"])
-    
+
     try:
         location = entities[0]['value']
     except:
         location = entities
+
     try:
         print("hello0")
         # data = pywapi.get_location_id(location)
         weather_data_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + ',in&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric'
         r = requests.get(weather_data_url)
         data = r.json()
+        print('hello1')
         temp = data["main"]["temp"]
         humidity = data["main"]["humidity"]
         print(type(humidity))

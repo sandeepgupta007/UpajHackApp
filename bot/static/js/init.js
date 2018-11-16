@@ -36,9 +36,6 @@ $(window).load(function() {
 });
 
 $messages.mCustomScrollbar();
-setTimeout(function() {
-  fakeMessage();
-}, 100);
 
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -58,6 +55,7 @@ function setDate(){
 function insertMessage() {
     query = $('textarea[name="message-input"]').val();
     csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+    fakeMessage();
 
     $.ajax({
         type: 'POST',
