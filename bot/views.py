@@ -44,11 +44,11 @@ def home(request):
     # print(total_states)
     try:
         if(request.method == "POST"):
-            state = request.POST['state']
+            state = request.POST['state'].lower()
             # print(state)
         elif(state == ""):
             state = "madhya pradesh"
-    
+
         if(request.method == "POST"):
             year = request.POST['year']
             # print(year)
@@ -56,7 +56,7 @@ def home(request):
                 year = 2010
     except:
         if(request.method == "POST"):
-            rain_state = request.POST['rain_state']
+            rain_state = request.POST['rain_state'].lower()
             if(rain_state == ""):
                 rain_state = "madhya pradesh"
 
@@ -69,12 +69,12 @@ def home(request):
     for obj in data['production ']:
         prod.append(obj)
 
-    
-        
+
+
     data = pd.read_csv('csv_files/rainfall_data.csv')
     data = data.loc[data['SUBDIVISION'] == rain_state]
     data = data.fillna(data.mean())
-        
+
     for r in data['ANNUAL']:
         rain.append(r)
     for y in data['YEAR']:
@@ -103,7 +103,7 @@ def get_response(request):
     return JsonResponse(response, safe=False)
 
 # def plot(request):
-    
+
 
 #     # df = pd.DataFrame({'production' : prod}, index = crop)
 #     # plot = df.plot.pie(y='production', figsize=(10, 10))
@@ -119,11 +119,11 @@ def get_response(request):
 #         rain_state = request.POST['rain_state']
 #         if(rain_state == ""):
 #             rain_state = "madhya pradesh"
-    
+
 #     data = pd.read_csv('csv_files/rainfall_data.csv')
 #     data = data.loc[data['SUBDIVISION'] == rain_state]
 #     data = data.fillna(data.mean())
-    
+
 #     for r in data['ANNUAL']:
 #         rain.append(r)
 #     for y in data['YEAR']:
