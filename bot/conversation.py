@@ -63,9 +63,34 @@ def chatDriver(query):
     if 'goodbyes' in intents:
         return bye()
 
+    if 'cultivation' in intents:
+        return cultivation(response)
+
     return rephrase(response)
 
 # Functions are defined below
+
+def cultivation(response):
+
+    search = response['input']['text']
+    base = "https://www.youtube.com/results?search_query="
+
+    r = requests.get(base+search)
+    soup = BeautifulSoup(r.text,'html.parser')
+    vids = soup.findAll('a',attrs={'class':'yt-uix-tile-link'})
+    
+    video_link = ""
+    count = 0
+    for v in vids:
+        count = 1
+        temp = 'https://www.youtube.com' + v['href']
+        video_link = temp
+        if(count > 0):
+            break
+    
+    hyperlink_format = '<a href="{link}" target="{target}">{text}</a>'
+    hyperlink_format = hyperlink_format.format(link=video_link, text='click here', target="_blank")
+    return response_encoder("You may visit this link for information about '" + search + "\n" + hyperlink_format)
 
 def rephrase(response):
 
@@ -95,25 +120,38 @@ def weather(location_id):
 def location_suggestions(entities):
 
     ''' facilitates search of location '''
+    print(entities[0]["value"])
+    
     try:
         location = entities[0]['value']
     except:
         location = entities
     try:
-        data = pywapi.get_location_id(location)
+        print("hello0")
+        # data = pywapi.get_location_id(location)
+        weather_data_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + ',in&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric'
+        r = requests.get(weather_data_url)
+        data = r.json()
+        temp = data["main"]["temp"]
+        humidity = data["main"]["humidity"]
+        print(type(humidity))
+        response_text = "The current temperature is " + str(temp) + "C and humidity is " + str(humidity) + "%"
+        # print(response_text)
+        print(type(response_text))
+        return response_encoder(response_text)
     except:
         return response_encoder("Sorry! The location is not covered.")
 
-    if len(data) is 1:
-        for loc_id, location in data.items():
-            return response_encoder(weather(loc_id))
-    else:
-        for loc_id, location in data.items():
-            if 'India' in location:
-                return response_encoder(weather(loc_id))
-            else:
-                print ('There are number quite a few location with similar set of name, please be specific')
-                return response_encoder(data)
+    # if len(data) is 1:
+    #     for loc_id, location in data.items():
+    #         return response_encoder(weather(loc_id))
+    # else:
+    #     for loc_id, location in data.items():
+    #         if 'India' in location:
+    #             return response_encoder(weather(loc_id))
+    #         else:
+    #             print ('There are number quite a few location with similar set of name, please be specific')
+    #             return response_encoder(data)
 
 def pesticide(entities):
 

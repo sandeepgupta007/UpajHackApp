@@ -29,6 +29,7 @@
       result = Http.responseText;
       var obj = JSON.parse(result);
       var address = obj.resourceSets["0"]["resources"]["0"]["address"]["formattedAddress"];
+      city_name = obj.resourceSets["0"]["resources"]["0"]["address"]["adminDistrict2"]
       document.getElementById("loc").innerHTML = address;
       const http = new XMLHttpRequest();
       var lat = position.coords.latitude;
@@ -42,46 +43,48 @@
         var ob = JSON.parse(res);
         var temp = ob["main"]["temp"];
         var humidity = ob["main"]["humidity"];
-        var condition = ob["weather"]["0"]["description"];
+        // var condition = ob["weather"]["0"]["description"];
         document.getElementById("temp").innerHTML = temp;
         document.getElementById("humidity").innerHTML = humidity;
-        if(flag == 0){
-          flag = 1;
-          var img = document.createElement("img")
-          if(condition.includes("cloud")){
-            img.src = "../../static/images/haze.png";
-          }
-          else{
-            img.src = "../../static/images/sunny.png";
-          }
-          img.style.height = "5vw"
-          var src = document.getElementById("image_weather");
-          src.appendChild(img);
-        }
+        // if(flag == 0){
+        //   flag = 1;
+        //   var img = document.createElement("img")
+        //   img.src = "../../static/images/haze.png";
+        //   if(condition.includes("cloud")){
+        //     img.src = "../../static/images/haze.png";
+        //   }
+        //   else{
+        //     img.src = "../../static/images/sunny.png";
+        //   }
+        //   img.style.height = "5vw"
+        //   var src = document.getElementById("image_weather");
+        //   src.appendChild(img);
+        // }
       }
 
       result = "";
       const protocol = new XMLHttpRequest();
-      const url_forecast = 'http://api.weatherunlocked.com/api/forecast/23.17,80.02?app_id=c8fc446a&app_key=b774914ba609ae0aacbb827fc88d64a4';
+      const url_forecast = 'https://api.openweathermap.org/data/2.5/forecast?q=ambala,in&mode=xml&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric';
       protocol.open("GET", url_forecast);
       protocol.send();
       protocol.onreadystatechange = function(){
         result = protocol.responseText;
         var object = JSON.parse(result)
+        console.log(object)
         var i;
-        for(i = 0; i < 7; i++){
-          var data_in = object["Days"][i.toString()];
-          var data_insert = 'day' + (i).toString();
-          var data2 = data_insert + '_data';
-          var data3 = data_insert + '_data2';
-          var data_rise = "rise" + (i).toString();
-          var data_set = "set" + (i).toString();
-          document.getElementById(data_insert).innerHTML = data_in["date"];
-          document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
-          document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
-          document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
-          document.getElementById(data_set).innerHTML = data_in["sunset_time"];
-        }
+        // for(i = 0; i < 7; i++){
+        //   var data_in = object["Days"][i.toString()];
+        //   var data_insert = 'day' + (i).toString();
+        //   var data2 = data_insert + '_data';
+        //   var data3 = data_insert + '_data2';
+        //   var data_rise = "rise" + (i).toString();
+        //   var data_set = "set" + (i).toString();
+        //   document.getElementById(data_insert).innerHTML = data_in["date"];
+        //   document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
+        //   document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
+        //   document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
+        //   document.getElementById(data_set).innerHTML = data_in["sunset_time"];
+        // }
       }
     }
   });
