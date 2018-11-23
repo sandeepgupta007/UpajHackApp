@@ -64,7 +64,7 @@
 
       result = "";
       const protocol = new XMLHttpRequest();
-      const url_forecast = 'https://api.openweathermap.org/data/2.5/forecast?q=ambala,in&mode=xml&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric';
+      const url_forecast = 'https://api.darksky.net/forecast/2a99ce9cb51213c9703f94fc6d4f6b5f/' + lat +',' + lon;
       protocol.open("GET", url_forecast);
       protocol.send();
       protocol.onreadystatechange = function(){
@@ -72,19 +72,29 @@
         var object = JSON.parse(result)
         console.log(object)
         var i;
-        // for(i = 0; i < 7; i++){
-        //   var data_in = object["Days"][i.toString()];
-        //   var data_insert = 'day' + (i).toString();
-        //   var data2 = data_insert + '_data';
-        //   var data3 = data_insert + '_data2';
-        //   var data_rise = "rise" + (i).toString();
-        //   var data_set = "set" + (i).toString();
-        //   document.getElementById(data_insert).innerHTML = data_in["date"];
-        //   document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
-        //   document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
-        //   document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
-        //   document.getElementById(data_set).innerHTML = data_in["sunset_time"];
-        // }
+        for(i = 0; i < 7; i++){
+          var data_in = object['daily']['data'][i.toString()];
+          var data_insert = 'day' + (i).toString();
+          var data2 = data_insert + '_data';
+          var data3 = data_insert + '_data2';
+          var data_rise = "rise" + (i).toString();
+          var data_set = "set" + (i).toString();
+
+          var temperatureHigh = data_in["temperatureHigh"];
+          var temperatureLow = data_in["temperatureLow"];
+
+          temperatureHigh = (Math.round((((temperatureHigh-32)*5)/9)*100))/100;
+          temperatureLow = Math.round(((temperatureLow-32)*500)/9)/100;
+
+          var sunriseTime = data_in['sunriseTime'];
+          var sunseTime = data_in['sunseTime'];
+
+          document.getElementById(data_insert).innerHTML = data_in[""];
+          document.getElementById(data2).innerHTML = temperatureHigh + "<sup>o</sup>C";
+          document.getElementById(data3).innerHTML = temperatureLow + "<sup>o</sup>C";
+          document.getElementById(data_rise).innerHTML = sunriseTime;
+          document.getElementById(data_set).innerHTML = sunseTime;
+        }
       }
     }
   });

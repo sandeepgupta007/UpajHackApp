@@ -1,10 +1,10 @@
 var slider = $('#chat-pane').slideReveal({
-    trigger: $('.trigger'),
-    width: '90%',
-    push: false,
-    position: 'right',
-    overlay: true,
-    overlayColor: 'rgba(0,0,0,0.5)',
+  trigger: $('.trigger'),
+  width: '90%',
+  push: false,
+  position: 'right',
+  overlay: true,
+  overlayColor: 'rgba(0,0,0,0.5)',
 });
 
 // Materialize JS
@@ -18,24 +18,29 @@ var slider = $('#chat-pane').slideReveal({
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
+// Messaging Interactions for Chat Pane
+
 $('.message-submit').click(function(event){
     event.preventDefault();
-
     insertMessage();
 });
 
-
-// Messaging Interactions for Chat Pane
-
 var $messages = $('.messages-content'),
-    d, h, m,
-    i = 0;
+  d, h, m,
+  i = 0;
 
 $(window).load(function() {
-    $messages.mCustomScrollbar();
+  $messages.mCustomScrollbar();
+  initialMessage();
 });
 
 $messages.mCustomScrollbar();
+
+function initialMessage() {
+
+  var html = '<div class="message new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure>Hello! I am Upaj! How can I help you?</div>'
+  $(html).appendTo($('.mCSB_container')).addClass('new');
+}
 
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -53,31 +58,31 @@ function setDate(){
 }
 
 function insertMessage() {
-    query = $('textarea[name="message-input"]').val();
-    csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
-    fakeMessage();
+  query = $('textarea[name="message-input"]').val();
+  csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+  fakeMessage();
 
-    $.ajax({
-        type: 'POST',
-        url: '/response',
-        data: {
-            'query' : query,
-            'csrfmiddlewaretoken': csrfmiddlewaretoken,
-        },
-        success: function(data){
+  $.ajax({
+    type: 'POST',
+    url: '/response',
+    data: {
+      'query' : query,
+      'csrfmiddlewaretoken': csrfmiddlewaretoken,
+    },
+    success: function(data){
 
-            for (i=0; i<data['bubbles']; i++) {
-              $('.message.loading').remove();
-              $(data['text'][i]).appendTo($('.mCSB_container')).addClass('new');
-              setDate();
-              updateScrollbar();
-              i++;
-            }
-        },
-        error: function(data, err){
+      for (i=0; i<data['bubbles']; i++) {
+        $('.message.loading').remove();
+        $(data['text'][i]).appendTo($('.mCSB_container')).addClass('new');
+        setDate();
+        updateScrollbar();
+        i++;
+      }
+    },
+    error: function(data, err){
 
-        }
-    });
+    }
+  });
 
   msg = $('.message-input').val();
   if ($.trim(msg) == '') {
@@ -87,7 +92,7 @@ function insertMessage() {
   setDate();
   $('.message-input').val(null);
   updateScrollbar();
-    fakeMessage();
+  fakeMessage();
 }
 
 $(window).on('keydown', function(e) {
@@ -104,6 +109,8 @@ function fakeMessage() {
   $('<div class="message loading new"><figure class="avatar"><img src="../static/images/chathead.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
   updateScrollbar();
 }
+
+// Owl Carousel
 
 $(document).ready(function(){
   $(".owl-carousel").owlCarousel({

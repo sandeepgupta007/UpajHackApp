@@ -109,6 +109,7 @@ def greeting(response):
 
 def weather(location_id):
 
+
     ''' returns weather conditions for a given location id '''
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
@@ -131,12 +132,11 @@ def location_suggestions(entities):
         location = entities
 
     try:
-        print("hello0")
-        # data = pywapi.get_location_id(location)
         weather_data_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + ',in&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric'
+
         r = requests.get(weather_data_url)
         data = r.json()
-        print('hello1')
+
         temp = data["main"]["temp"]
         humidity = data["main"]["humidity"]
         print(type(humidity))
