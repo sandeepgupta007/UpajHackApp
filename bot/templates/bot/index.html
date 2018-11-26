@@ -64,7 +64,7 @@
 
       result = "";
       const protocol = new XMLHttpRequest();
-      const url_forecast = 'https://api.openweathermap.org/data/2.5/forecast?q=ambala,in&mode=xml&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric';
+      const url_forecast = 'http://api.weatherunlocked.com/api/forecast/' + position.coords.latitude + ',' + position.coords.longitude +'?app_id=c8fc446a&app_key=b774914ba609ae0aacbb827fc88d64a4';
       protocol.open("GET", url_forecast);
       protocol.send();
       protocol.onreadystatechange = function(){
@@ -72,19 +72,19 @@
         var object = JSON.parse(result)
         console.log(object)
         var i;
-        // for(i = 0; i < 7; i++){
-        //   var data_in = object["Days"][i.toString()];
-        //   var data_insert = 'day' + (i).toString();
-        //   var data2 = data_insert + '_data';
-        //   var data3 = data_insert + '_data2';
-        //   var data_rise = "rise" + (i).toString();
-        //   var data_set = "set" + (i).toString();
-        //   document.getElementById(data_insert).innerHTML = data_in["date"];
-        //   document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
-        //   document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
-        //   document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
-        //   document.getElementById(data_set).innerHTML = data_in["sunset_time"];
-        // }
+        for(i = 0; i < 7; i++){
+          var data_in = object["Days"][i.toString()];
+          var data_insert = 'day' + (i).toString();
+          var data2 = data_insert + '_data';
+          var data3 = data_insert + '_data2';
+          var data_rise = "rise" + (i).toString();
+          var data_set = "set" + (i).toString();
+          document.getElementById(data_insert).innerHTML = data_in["date"];
+          document.getElementById(data2).innerHTML = data_in["temp_max_c"] + "C";
+          document.getElementById(data3).innerHTML = data_in["temp_min_c"] + "C";
+          document.getElementById(data_rise).innerHTML = data_in["sunrise_time"];
+          document.getElementById(data_set).innerHTML = data_in["sunset_time"];
+        }
       }
     }
   });
@@ -98,6 +98,9 @@
   var st = "{{ state }}";
   var year = "{{ year }}"
   var title2 = "Top 5 crops in " + st + " in " + year + " (1000 tonnes)";
+  
+  var states = {{ total_states|safe }}
+  console.log(states)
 
   var total_state = {{ total_states| safe}}
 
@@ -200,10 +203,34 @@
         <img src="{% static 'images/logo.png' %}" style="height: 8vh; width: auto;">
       </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#" style="color: teal;">What is Upaj?</a></li>
+          
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">What is Upaj?</a></li>
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">Frequently Asked Questions</a></li>
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">Support</a></li>
+        
       </ul>
     </div>
   </nav>
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>Upaj</h4>
+        <p>Upaj is a Farming Assistant System designed to help our farmers in determining the best practises that must be followed in the process of cultivation.</p>
+      </div>
+  </div>
+
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>This is about the modal</h4>
+        <p>hey there. i am a modal</p>
+      </div>
+  </div>
+
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>This is about the modal</h4>
+        <p>hey there. i am a modal</p>
+      </div>
+  </div>
   <!-- End NavBar -->
 
   <!-- First Parallax Container -->
@@ -216,7 +243,7 @@
           <h5 class="header col s12 light">Your personal farming advisor.</h5>
         </div>
         <div class="row center">
-          <button href="" class="trigger btn-large waves-effect waves-light teal lighten-1 pulse ">Chat Now</button>
+          <button href="" class="trigger btn-large teal lighten-1 pulse ">Chat Now</button>
         </div>
         <br><br>
 
@@ -227,12 +254,12 @@
   <!-- End Parallax Container -->
 
   <!-- Start Weather Forecast -->
-  <div class="row">
-    <div class="col s8 offset-s2">
-
-      <div class="owl-carousel weather-forecast">
+  <div class="row" style="">
+      <div class="col s2" style="height:395px;"><img src="{% static 'images/weather_report.png'%}" style="margin-top:60%;margin-left: 30px;display:block;" width="100%" height="30%" /></div>
+    <div class="col s8">
+      <div class="owl-carousel weather-forecast" style="">
         {% for i in "xxxxxxx" %}
-        <div class="weather-forecast-card">
+        <div class="weather-forecast-card" style="border: 3px solid cadetblue;box-shadow: 5px 10px #888888;">
           <center>
             <h6 id="day{{ forloop.counter0 }}"></h6>
             <div><span class="mdi mdi-weather-sunny mdi-48px" style="padding: 2vw;"></span></div>
@@ -240,7 +267,7 @@
             <div class="weather-forecast-data">
               <div class="weather-forecast-data-sub row">
                 <span class="mdi mdi-thermometer-lines mdi-36px"></span>
-                <div style="padding-right: 3vw;">
+                <div>
                   Max : <span id="day{{ forloop.counter0 }}_data"></span>
                   <br>
                   Min : <span id="day{{ forloop.counter0 }}_data2"></span>
@@ -263,18 +290,88 @@
       </div>
     </div>
 
-    <div class="col s2"></div>
+    <div class="col s2">
+        <div class="collection with-header"style="margin-top10px;width: 15vw;height:51vh; float:left; overflow: scroll;">
+            <div class="collection-header"><center><h4>Yojna</h4></center></div>
+              <div>
+                <ul style="margin-left:5px;">
+                  <li><a href="https://www.indiafilings.com/learn/kisan-karz-mafi-yojana/">Kisan Karz Maafi Yojna</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
   </div>
   <!-- End Weather Forecast -->
 
   <!-- Start Info Section -->
+  <div class="row">
+    <div class="collection with-header"style="width: 20vw;height:51vh; float:left; overflow: scroll;">
+        <div class="collection-header"><center><h4>Latest News</h4></center></div>
+          <div>
+            <ul>
+              {% for key, val in fin %}
+                <li class="collection-item">
+                  <a href="{{ key }}" target="_blank">{{ val }}</a> 
+                </li>
+              {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-  <div class="container">
-    <div class="section">
+    <div>
+    <div class="card"  style="width:26%; height:50vh;float:left;padding: 10px;">
+        <div class="card-image waves-effect waves-block waves-light" style="height: 58%;">
+          <img class="activator" src="{% static 'images/top_crops.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Top Producing Sates<i class="material-icons right">more_vert</i></span>
+          <p><a href="http://www.walkthroughindia.com/offbeat/10-largest-agricultural-producing-states-of-india/">get more info...</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Top Producing Sates<i class="material-icons right">close</i></span>
+          <h4 class="center brown-text"><img src="{% static 'images/abc.png' %}" width="20%" height="20%"></h4>
+          <p class="light"><b><center> Rice - West Bengal<br> Wheat - Uttar Pradesh <br> Cotton - Gujrat <br> Jute - West Bengal <br> Tea - Assam </center></b></p>
+        </div>
+      </div>
+
+      <div class="card"  style="width:26%; height:50vh;float:left;padding: 10px;">
+          <div class="card-image waves-effect waves-block waves-light"  style="height: 58%;">
+            <img class="activator" src="{% static 'images/current_weather.jpeg' %}" width="100%" height="100%">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Weather Today<i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Weather Today<i class="material-icons right">close</i></span>
+            <h4 class="center brown-text"><img src="{% static 'images/m-cloudy.png' %}" width="20%" height="20%"></h4>
+            <p class="light"><b><center>You are at <span id='loc'></span>.<br> Current temperature is <span id='temp'></span><sup> o</sup>C<br> Humidity: <span id='humidity'></span>% <br></center></b></p>
+          </div>
+        </div>
+        
+        <div class="card"  style="width:26%; height:50vh;float:left;padding:10px;">
+            <div class="card-image waves-effect waves-block waves-light"  style="height: 58%;">
+              <img class="activator" src="{% static 'images/msp.jpeg' %}" width="100%" height="100%">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Minimum Support Price<i class="material-icons right">more_vert</i></span>
+              <p><a href="#">This is a link</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Minimum Support Price<i class="material-icons right">close</i></span>
+              <h4 class="center brown-text"><img src="{% static 'images/msp.png' %}" width="20%" height="20%"></h4>
+              <p class="light"><b><center>Wheat - 1735/quintal <br> Rice - 1560/quintal <br> Maize - 1345/quintal <br> Mustard - 4000/quintal</center></b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+  <!-- <div class="container" style="float:unset">
+    <div class="section"> -->
 
       <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s10 m4">
+      <!-- <div class="row">
+        <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><img src="{% static 'images/agriculture.jpeg' %}"></h2>
             <h5 class="center">Top Crop Producing States</h5>
@@ -283,7 +380,7 @@
           </div>
         </div>
 
-        <div class="col s10 m4">
+        <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><img src="{% static 'images/m-cloudy.png' %}" height="120vh" width = "auto"></h2>
             <h5 class="center">Weather Today</h5>
@@ -292,7 +389,7 @@
           </div>
         </div>
 
-        <div class="col s10 m4">
+        <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><img src="{% static 'images/msp.png' %}" height="120vw"></h2>
             <h5 class="center">Minimum Support Price</h5>
@@ -303,10 +400,10 @@
       </div>
 
     </div>
-  </div>
+  </div> -->
 
   <!-- Second Parallax Conatiner -->
-  <div class="parallax-container">
+  <div class="parallax-container" style="display:block">
     <div class="section no-pad-bot">
       <div class="container">
 
@@ -328,22 +425,12 @@
               <form>
                 {% csrf_token %}
                 <div class="input-field">
-                  <select>
-                    <option value="" selected disabled>Choose Your Option</option>
-                    <option value="uttar pradesh">Uttar Pradesh</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
+                  <input type="text" name="state">
                   <label>State</label>
                 </div>
 
                 <div class="input-field">
-                  <select>
-                    <option value="" selected disabled>Choose Your Option</option>
-                    <option value="uttar pradesh">Uttar Pradesh</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
+                  <input type="text" name="year">
                   <label>Year</label>
                 </div>
 
@@ -355,7 +442,6 @@
 
           <div class="col s24 m8">
               <div class="chart" id="chartContainer"></div>
-
           </div>
         </div>
       </div>
@@ -381,11 +467,84 @@
 
             <div class="col s24 m8">
                 <div class="chart" id="chartContainer2"></div>
-
             </div>
           </div>
         </div>
       </div>
+
+      <div class="header" style="padding-left:25px;"><h3>Agricultural Marketing</h3></div>
+      <div class="row" style="padding-left:25px;padding-right:20px;">
+        <div class="col s12 m4">
+          <form action="{% url 'farmer_trading' %}" method="post"> 
+              {% csrf_token %}
+              <label><b>Name: </b></label><input type="text" name="farmer_name"><br>
+              <label><b>Phone Number:</b></label><input type="text" name="phone"><br>
+              <label><b>Crop Name:</b></label><input type="text" name="crop_name"><br>
+              <label><b>Price:</b></label><input type="number" name="your_price"><br>
+              <button type="submit" class="btn btn-small">Submit</button>&nbsp;&nbsp;
+              <button type="reset" class="btn btn-small">Reset</button>
+            </form>
+        </div>
+        <div class="col s24 m8" style="overflow:scroll;height:400px;">
+            <div class="row">
+                <div class="collection with-header"style="overflow: scroll;">
+                    <div class="collection-header"><center><h4>Price By Farmers</h4><h6>If you are a trader and interested in the prices set up by our farmers, then contact.</h6></center></div>
+                      <div>
+                        <ul>
+                          {% for farmer in farmers_trade %}
+                            <li class="collection-item">
+                                  <p>
+                                    Name : {{ farmer.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Crop Name: {{ farmer.crop_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Name : {{ farmer.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Phone Number : {{ farmer.phone}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Price : {{ farmer.price }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    <a href="{% url 'sendSMS' %}">Send SMS</a>
+                                  </p>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding-left:25px;padding-right:20px;">
+          <div class="col s12 m4">
+            <form action="{% url 'trader_trading' %}" method="post"> 
+                {% csrf_token %}
+                <label><b>Name: </b></label><input type="text" name="farmer_name"><br>
+              <label><b>Phone Number:</b></label><input type="text" name="phone"><br>
+              <label><b>Crop Name:</b></label><input type="text" name="crop_name"><br>
+              <label><b>Price:</b></label><input type="number" name="your_price"><br> 
+                <button type="submit" class="btn btn-small">Submit</button>&nbsp;&nbsp;
+                <button type="reset" class="btn btn-small">Reset</button>
+              </form>
+          </div>
+          <div class="col s24 m8" style="overflow:scroll;height:400px;">
+              <div class="row">
+                  <div class="collection with-header"style="overflow: scroll;">
+                      <div class="collection-header"><center><h4>Price By Traders</h4><h6>If you are a farmer and interested in the prices set up by the mentioned traders, then contact.</h6></center></div>
+                        <div>
+                          <ul>
+                            {% for trader in traders_trade %}
+                              <li class="collection-item">
+                                    <p>
+                                      Name : {{ trader.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Crop Name: {{ trader.crop_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Phone Number : {{ trader.phone}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Price : {{ trader.price }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                      <a href="#">Send SMS</a>
+                                    </p>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+                  </div>
+          </div>
+        </div>
 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
@@ -412,8 +571,8 @@
           <ul>
             <li><a class="white-text" href="http://agriculture.gov.in/" target="_blank">Ministry of Agriculture & Farmers' Welfare</a></li>
             <li><a class="white-text" href="https://farmer.gov.in/stateagridepartments.aspx" target="_blank">State Agriculture Departments</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="http://www.agriwatch.com/" target="_blank">AgriWatch</a></li>
+            <li><a class="white-text" href="https://krishijagran.com/" target="_blank">KrishiJagram</a></li>
           </ul>
         </div>
         <div class="col l3 s12">
@@ -464,6 +623,7 @@
   <script type="text/javascript" src = "{% static 'js/materialize.min.js' %}"></script>
   <script src="{% static 'js/owl.carousel.min.js' %}"></script>
   <script type="text/javascript" src = "{% static 'js/init.js' %}"></script>
+  
   <!-- End Scripts -->
 </body>
 </html>

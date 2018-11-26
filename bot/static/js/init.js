@@ -150,4 +150,4 @@ function showPage() {
 
 // Chart
 
-$('select').formSelect('methodName');
+// $('select').formSelect('methodName');

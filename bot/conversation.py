@@ -78,7 +78,7 @@ def cultivation(response):
     r = requests.get(base+search)
     soup = BeautifulSoup(r.text,'html.parser')
     vids = soup.findAll('a',attrs={'class':'yt-uix-tile-link'})
-    
+
     video_link = ""
     count = 0
     for v in vids:
@@ -127,13 +127,14 @@ def location_suggestions(entities):
     except:
         location = entities
     try:
-        print("hello0")
         # data = pywapi.get_location_id(location)
         weather_data_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + ',in&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric'
         r = requests.get(weather_data_url)
         data = r.json()
         temp = data["main"]["temp"]
+        print("hello temp")
         humidity = data["main"]["humidity"]
+        print("hello hum")
         print(type(humidity))
         response_text = "The current temperature is " + str(temp) + "C and humidity is " + str(humidity) + "%"
         # print(response_text)
