@@ -186,21 +186,12 @@
   <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 </head>
 
-<body onload="myFunction()" style="margin:0;">
-  <!-- Preloader -->
-
-
-  <div id="loader"></div>
-
-  <!-- End Preloader -->
-
-  <div style="display:none;" id="content" class="animate-bottom">
-
+<body>
   <!-- Navigation Bar -->
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="" class="brand-logo">
-        <img src="{% static 'images/logo.png' %}" style="height: 8vh; width: auto;">
+        <img src="{% static 'images/logo.png' %}" style="height: 9vh; width: auto;">
       </a>
       <ul class="right hide-on-med-and-down">
           
@@ -289,6 +280,7 @@
 
       </div>
     </div>
+
 
     <div class="col s2">
         <div class="collection with-header"style="margin-top10px;width: 15vw;height:51vh; float:left; overflow: scroll;">
@@ -414,7 +406,7 @@
   <!-- End Parallax Container -->
 
 
-  <!-- Start Charts -->
+
   <div class="container" >
       <div class="section">
           <div class="row">
@@ -422,18 +414,13 @@
           <div class="col s12 m4">
             <div class="icon-block">
               <h6 class="center brown-text">Top 5 crops</h6>
-              <form>
+              <form action="{% url 'home' %}" method="POST" >
                 {% csrf_token %}
-                <div class="input-field">
-                  <input type="text" name="state">
-                  <label>State</label>
-                </div>
 
-                <div class="input-field">
-                  <input type="text" name="year">
-                  <label>Year</label>
-                </div>
-
+                State :
+                <input type="text" name = 'state' required>
+                Year : <input type="text" name = 'year' required>
+                
                 <button type="submit" class="btn-small waves-effect waves-light teal lighten-1  ">Submit</button>
               </form>
 
@@ -554,7 +541,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="{% static 'images/wheat.png' %}"></div>
+    <div class="parallax"><img src="{% static 'images/wheat.png' %}" alt="Unsplashed background img 2"></div>
   </div>
 
   <footer class="page-footer teal">
@@ -567,7 +554,7 @@
 
         </div>
         <div class="col l5 s12">
-          <h5 class="white-text">External Resources</h5>
+          <h5 class="white-text">Government Websites</h5>
           <ul>
             <li><a class="white-text" href="http://agriculture.gov.in/" target="_blank">Ministry of Agriculture & Farmers' Welfare</a></li>
             <li><a class="white-text" href="https://farmer.gov.in/stateagridepartments.aspx" target="_blank">State Agriculture Departments</a></li>
@@ -578,9 +565,9 @@
         <div class="col l3 s12">
           <h5 class="white-text">Developers</h5>
           <ul>
-            <li><a class="white-text" href="https://github.com/MehtaDevang" target="_blank">Devang Mehta</a></li>
-            <li><a class="white-text" href="https://github.com/anuj97" target="_blank">Anuj Upadhyay</a></li>
-            <li><a class="white-text" href="https://github.com/nmnme" target="_blank">Noman</a></li>
+            <li><a class="white-text" href="https://github.com/MehtaDevang">Devang Mehta</a></li>
+            <li><a class="white-text" href="https://github.com/anuj97">Anuj Upadhyay</a></li>
+            <li><a class="white-text" href="https://github.com/nmnme">Noman</a></li>
           </ul>
         </div>
       </div>
@@ -591,28 +578,27 @@
       </div>
     </div>
   </footer>
-</div>
 
-<!-- Start Slider Chat Pane -->
-<div id="chat-pane">
-  <div class="chat">
-    <div class="chat-title">
-      <h1>Upaj</h1>
-      <h2>Here to Help</h2>
-      {% csrf_token %}
-      <figure class="avatar">
-        <img src="{% static 'images/chathead.png' %}" /></figure>
-    </div>
-    <div class="messages">
-      <div class="messages-content"></div>
-    </div>
-    <div class="message-box">
-      <textarea type="text" class="message-input" name="message-input" placeholder="Type message..."></textarea>
-      <button type="submit" class="message-submit">Send</button>
+  <!-- STart Slider Chat Pane -->
+  <div id="chat-pane">
+    <div class="chat">
+      <div class="chat-title">
+        <h1>Upaj</h1>
+        <h2>Here to Help</h2>
+        {% csrf_token %}
+        <figure class="avatar">
+          <img src="{% static 'images/chathead.png' %}" /></figure>
+      </div>
+      <div class="messages">
+        <div class="messages-content"></div>
+      </div>
+      <div class="message-box">
+        <textarea type="text" class="message-input" name="message-input" placeholder="Type message..."></textarea>
+        <button type="submit" class="message-submit">Send</button>
+      </div>
     </div>
   </div>
-</div>
-<!-- End Slider Chat Pane -->
+  <!-- End Slider Chat Pane -->
 
 
   <!--  Start Scripts-->

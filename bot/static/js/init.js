@@ -1,5 +1,3 @@
-// Initialization for Chat Pane Slider
-
 var slider = $('#chat-pane').slideReveal({
     trigger: $('.trigger'),
     width: '90%',
@@ -9,22 +7,16 @@ var slider = $('#chat-pane').slideReveal({
     overlayColor: 'rgba(0,0,0,0.5)',
 });
 
-// End Initialization for Chat Pane Slider
-
 // Materialize JS
 
 (function($){
   $(function(){
+
     $('.sidenav').sidenav();
     $('.parallax').parallax();
-  });
-})(jQuery);
 
-$(document).ready(function(){
-  $('select').formSelect();
-});
-
-// End Materialize
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
 
 $('.message-submit').click(function(event){
     event.preventDefault();
@@ -95,7 +87,7 @@ function insertMessage() {
   setDate();
   $('.message-input').val(null);
   updateScrollbar();
-  fakeMessage();
+    fakeMessage();
 }
 
 $(window).on('keydown', function(e) {
@@ -113,8 +105,6 @@ function fakeMessage() {
   updateScrollbar();
 }
 
-// Owl Initialization
-
 $(document).ready(function(){
   $(".owl-carousel").owlCarousel({
     stagePadding : 30,
@@ -129,25 +119,3 @@ $(document).ready(function(){
     dots : true,
   });
 });
-
-// End Owl Initialization
-
-// Loader Js
-
-var myVar;
-
-function myFunction() {
-    myVar = setTimeout(showPage, 3000);
-}
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("content").style.display = "block";
-}
-
-// Loader Js End
-
-
-// Chart
-
-// $('select').formSelect('methodName');
