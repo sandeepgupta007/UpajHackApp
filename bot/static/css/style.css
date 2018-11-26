@@ -505,10 +505,6 @@ Bounce
   padding: 0.4vw;
 }
 
-.weather-forecast-data {
-  /*float: left;*/
-  /*padding: 5vw;*/
-}
 
 .weather-forecast-data-sub {
 
@@ -523,5 +519,4 @@ Bounce
   float: left;
   padding-left: 1vw;
 }
-
 

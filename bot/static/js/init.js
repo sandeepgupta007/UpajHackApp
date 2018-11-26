@@ -126,5 +126,3 @@ $(document).ready(function(){
     dots : true,
   });
 });
-
-

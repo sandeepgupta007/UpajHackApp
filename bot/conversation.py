@@ -132,13 +132,16 @@ def location_suggestions(entities):
         location = entities
 
     try:
+        # data = pywapi.get_location_id(location)
         weather_data_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + ',in&appid=c4ebee5432d574b968a2332bfa6ab6f4&units=metric'
 
         r = requests.get(weather_data_url)
         data = r.json()
 
         temp = data["main"]["temp"]
+        print("hello temp")
         humidity = data["main"]["humidity"]
+        print("hello hum")
         print(type(humidity))
         response_text = "The current temperature is " + str(temp) + "C and humidity is " + str(humidity) + "%"
         # print(response_text)
