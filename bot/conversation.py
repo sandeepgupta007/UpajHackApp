@@ -4,14 +4,12 @@ import datetime
 import time
 from scipy import stats
 import numpy as np
-from sklearn import datasets,linear_model
+from sklearn import datasets, linear_model, preprocessing, pipeline
 from pprint import pprint
 import pandas as pd
 import json
 import requests
 from bs4 import BeautifulSoup
-
-# from sklearn.tree import
 
 DATA_GOV_API ='579b464db66ec23bdd000001f4159aa056f849bb6c7922a7a5c2cc99'
 
@@ -109,8 +107,8 @@ def greeting(response):
 
 def weather(location_id):
 
-
     ''' returns weather conditions for a given location id '''
+
     weather_data = pywapi.get_weather_from_weather_com(location_id)
     pprint(weather_data)
 
@@ -124,12 +122,11 @@ def weather(location_id):
 def location_suggestions(entities):
 
     ''' facilitates search of location '''
-    print(entities[0]["value"])
 
     try:
         location = entities[0]['value']
     except:
-        location = entities
+        location = 'Jabalpur'
 
     try:
         # data = pywapi.get_location_id(location)
@@ -143,7 +140,7 @@ def location_suggestions(entities):
         humidity = data["main"]["humidity"]
         print("hello hum")
         print(type(humidity))
-        response_text = "The current temperature is " + str(temp) + "C and humidity is " + str(humidity) + "%"
+        response_text = "The current temperature is " + str(temp) + "<sup>o</sup>C and humidity is " + str(humidity) + "%"
         # print(response_text)
         print(type(response_text))
         return response_encoder(response_text)
@@ -177,7 +174,10 @@ def minimum_support_price_prediction(response):
 
     ''' provides a predicted minimum support price '''
 
-    crop = response['entities'][0]['value']
+    try:
+        crop = response['entities'][0]['value']
+    except:
+        return response_encoder("Sorry!")
 
     dataframe = pd.read_csv('csv_files/crops.csv')
     msp_cost = -1
@@ -201,89 +201,91 @@ def minimum_support_price_prediction(response):
     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
 
     try:
-    	current_year = now.year
-    	predicition = current_year*slope + intercept
+        current_year = now.year
+        predicition = current_year*slope + intercept
 
-    	if(predicition <= 0):
-    		output = str('Sorry! no prediction avialable')
-    	else:
-    		output = str('The minimum selling price of ' + crop + ' is \u20B9' +str(predicition.round()))
+        if(predicition <= 0):
+            output = str('Sorry! no prediction avialable')
+        else:
+            output = str('The minimum selling price of ' + crop + ' is \u20B9' +str(predicition.round()))
     except:
-    	output = str('Sorry! no prediction available')
+        output = str('Sorry! no prediction available')
     return response_encoder(output)
 
-def crop_forecasting():
+def crop_forecasting(entities):
 
-	data = pd.read_csv('csv_files/crop_production.csv')
-	now = datetime.datetime.now()
+    df = pd.read_csv('csv_files/final.csv')
+    now = datetime.datetime.now()
 
-	if(now.month >= 7 and now.month <= 10):
-		season = 'kharif'
-	elif(now.month >= 10 and now.month <= 11):
-		season = 'autumn'
-	elif((now.month >= 11 and now.month <= 12) or now.month <= 1):
-		season = 'rabi'
-	else:
-		season = 'whole year'
+    try:
+        season = entities[0]['season']
+    except:
+        if(now.month >= 7 and now.month <= 10):
+            season = 'kharif'
+        elif(now.month >= 10 and now.month <= 11):
+            season = 'autumn'
+        elif((now.month >= 11 and now.month <= 12) or now.month <= 1):
+            season = 'rabi'
+        else:
+            season = 'whole year'
 
-	if(True):
-		# print (str(season).lower() + " " + str(location).lower())
-		Crop = {}
-		for i in range(1,len(data)):
-			#print (str(data[i][1]).lower() + " " + str(data[i][3]).lower())
-			#print (data[i][3].lower() + " " + season.lower())
-			#a = list(season.lower())
-			#print (a)
-			data[i][3] = str(data[i][3].lower())
-			data[i][3] = data[i][3].strip()
-			data[i][1] = str(data[i][1].lower())
-			data[i][1] = data[i][1].strip()
-			if(str(location.lower()) == data[i][1]  and season.lower() == data[i][3].lower()):
-				try:
-					Crop[data[i][4]]=1
-					# Production.append(float(data[i][6])/float(data[i][5]))
-					# Year.append(data[i][2])
-				except:
-					continue
-		output1 =  str('Here is a list of possible crop which can be grown with there approximate production on your cultivated area will be shown if possible')
-		for i in Crop:
-			Production = []
-			Year = []
-			for j in range(1,len(data)):
-				data[j][3] = str(data[j][3].lower())
-				data[j][3] = data[j][3].strip()
-				data[j][1] = str(data[j][1].lower())
-				data[j][1] = data[j][1].strip()
-				if(str(location.lower()) == data[j][1]  and season.lower() == data[j][3].lower() and i == data[j][4]):
-					try:
-						Production.append(float(data[j][6])/float(data[j][5]))
-						Year.append(data[j][2])
-					except:
-						continue
+    try:
+        crop = entities[0]['crops']
+    except:
+        crop = None
 
-			if(len(Year) == 0):
-				output2 = str('No dataset found for your location or region please try after some days')
-			else:
-				X = []
-				for j in range(len(Year)):
-					X.append(int(Year[j]))
-				[float(j) for j in Production]
-				# print (Production)
-				# print (X)
-				try:
-					[b0,b1] = simple_linear_regression(X,Production)
-					current_year = now.year
-					predicition = current_year*b1+b0
-					if(float(predicition) == 0):
-						continue
-					output1 += str(i + " " + str(predicition) + " ")
-					#print (i + " " +str(predicition))
-				except:
-					continue
-	if(output2 == ""):
-		return (output1)
-	else:
-		return (output2)
+    try:
+        state = entities[0]['state'].lower()
+    except:
+        state = 'madhya pradesh'
+
+    try:
+        district = entities[0]['district'].upper()
+    except:
+        district = 'JABALPUR'
+
+
+    try:
+        rainfall = entities[0]['rainfall']
+    except:
+        # here we predict the rainfall for that year
+
+        df = df.loc[df['district'] == district]
+        df = np.array(df)
+        year = df[:,2]
+        rain = df[:,5]
+
+        X = [list(year)]
+        y = rain
+
+        rain_model = pipeline.make_pipeline(preprocessing.PolynomialFeatures(5), linear_model.Ridge())
+        rain_model.fit(np.array(X).transpose(), y)
+        rainfall = rain_model.predict(np.array([[now.year]]))[0]
+
+    if crop:
+        # df = df.loc[df['state'] = state and df['district'] = location and ]
+    # else:
+        df = df.loc[df['state'] == state]
+        regr_df = df.loc[df['district'] == district]
+
+
+    regr = LinearRegression()
+
+    regr_df = np.array(regr_df)
+
+    year = regr_df[:,2]
+    rain = regr_df[:,5]
+    prod_by_area = regr_df[:,6]
+
+    X = [list(year), list(rain)]
+    y = prod_by_area
+
+    regr.fit(np.array(X).transpose(), y)
+
+    predicted = regr.predict(np.array([[now.year, rainfall]]))
+
+    return response_encoder(predicted)
+
 
 def response_encoder(response):
 
@@ -302,14 +304,6 @@ def response_encoder(response):
         message['bubbles'] = len(response)
 
     return message
-
-
-
-
-
-
-
-
 
 StateDict = {
     'jammu and kashmir' : 1,
