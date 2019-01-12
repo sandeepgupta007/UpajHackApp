@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'upaj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dc4gq1flp46ipq',
+        'USER': 'rmoawohkmzjjxg',
+        'PASSWORD': '71b18320f88b9cdd0cde21f3474817d4a8c353ab371b5eb87fbf26a110f3681d',
+        'HOST': 'ec2-174-129-32-37.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
