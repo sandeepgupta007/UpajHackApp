@@ -1,0 +1,543 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"/>
+  <title>Upaj</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script>
+
+  var rain = {{ rain|safe }};
+  var rain_year = {{ rain_year|safe }};
+  var st = "{{ rain_state }}";
+  var title = "Rainfall in " + st + " over years (mm)";
+
+  var crop = {{ crop|safe }}
+  var prod = {{ prod|safe }}
+  var st = "{{ state }}";
+  var year = "{{ year }}"
+  var title2 = "Top 5 crops in " + st + " in " + year + " (1000 tonnes)";
+
+  var states = {{ total_states|safe }}
+  console.log(states)
+
+  var total_state = {{ total_states| safe}}
+
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer2", {
+        title:{
+          text: title
+        },
+        data: [
+        {
+          // Change type to "doughnut", "line", "splineArea", etc.
+          type: "splineArea",
+          dataPoints: [
+            { label: rain_year[0], y: rain[0]  },
+            { label: rain_year[1], y: rain[1]  },
+            { label: rain_year[2], y: rain[2]  },
+            { label: rain_year[3], y: rain[3]  },
+            { label: rain_year[4], y: rain[4]  },
+            { label: rain_year[5], y: rain[5]  },
+            { label: rain_year[6], y: rain[6]  },
+            { label: rain_year[7], y: rain[7]  },
+            { label: rain_year[8], y: rain[8]  },
+            { label: rain_year[9], y: rain[9]  },
+            { label: rain_year[10], y: rain[10]  },
+            { label: rain_year[11], y: rain[11]  },
+            { label: rain_year[12], y: rain[12]  },
+            { label: rain_year[13], y: rain[13]  },
+            { label: rain_year[14], y: rain[14]  }
+          ]
+        }
+      ]
+    });
+    chart.render();
+
+    var chart2 = new CanvasJS.Chart("chartContainer", {
+      title:{
+        text: title2
+      },
+      data: [
+      {
+        // Change type to "doughnut", "line", "splineArea", etc.
+        type: "splineArea",
+        dataPoints: [
+          { label: crop[0], y: prod[0]/1000  },
+          { label: crop[1], y: prod[1]/1000  },
+          { label: crop[2], y: prod[2]/1000  },
+          { label: crop[3], y: prod[3]/1000  },
+          { label: crop[4], y: prod[4]/1000  }
+        ]
+      }
+    ]
+  });
+  chart2.render();
+}
+  </script>
+<style>
+
+/* Scroll Bar */
+  /* width */
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: white;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey;  */
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background:lightseagreen;
+    border-radius: 20px;
+}
+
+</style>
+
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="" class="brand-logo">
+        <img src="{% static 'images/logo.png' %}" style="height: 9vh; width: auto;">
+      </a>
+      <ul class="right hide-on-med-and-down">
+
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">What is Upaj?</a></li>
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">Frequently Asked Questions</a></li>
+        <li><a data-target="modal1" class="button modal-trigger" onclick="$('.modal').modal();" href="#" style="color: teal;">Support</a></li>
+
+      </ul>
+    </div>
+  </nav>
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>Upaj</h4>
+        <p>Upaj is a Farming Assistant System designed to help our farmers in determining the best practises that must be followed in the process of cultivation.</p>
+      </div>
+  </div>
+
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>This is about the modal</h4>
+        <p>hey there. i am a modal</p>
+      </div>
+  </div>
+
+  <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+        <h4>This is about the modal</h4>
+        <p>hey there. i am a modal</p>
+      </div>
+  </div>
+  <!-- End NavBar -->
+
+  <!-- First Parallax Container -->
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Upaj</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Your personal farming advisor.</h5>
+        </div>
+        <div class="row center">
+          <button href="" class="trigger btn-large teal lighten-1 pulse ">Chat Now</button>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/back.jpg' %}"></div>
+  </div>
+  <!-- End Parallax Container -->
+
+  <!-- Start Weather Forecast -->
+  <div class="row" style="">
+      <div class="col s2" style="height:395px;"><img src="{% static 'images/weather_report.png'%}" style="margin-top:60%;margin-left: 30px;display:block;" width="100%" height="30%" /></div>
+    <div class="col s8">
+      <div class="owl-carousel weather-forecast" style="">
+        {% for i in "xxxxxxx" %}
+        <div class="weather-forecast-card" style="border: 3px solid cadetblue;box-shadow: 5px 10px #888888;">
+          <center>
+            <h6 id="day{{ forloop.counter0 }}"></h6>
+            <div><span class="mdi mdi-weather-sunny mdi-48px" style="padding: 2vw;"></span></div>
+
+            <div class="weather-forecast-data">
+              <div class="weather-forecast-data-sub row">
+                <span class="mdi mdi-thermometer-lines mdi-36px"></span>
+                <div>
+                  Max : <span id="day{{ forloop.counter0 }}_data"></span>
+                  <br>
+                  Min : <span id="day{{ forloop.counter0 }}_data2"></span>
+                </div>
+              </div>
+
+              <div class="weather-forecast-data-sub row">
+                <span class="mdi mdi-weather-sunset-up mdi-36px"></span>
+                <div>
+                  Sunrise : <span id="rise{{ forloop.counter0 }}"></span>am
+                  <br>
+                  Sunset : <span id="set{{ forloop.counter0 }}"></span>pm
+                </div>
+              </div>
+            </div>
+          </center>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+
+    <div class="col s2">
+        <div class="collection with-header"style="margin-top10px;width: 15vw;height:51vh; float:left; overflow: scroll;">
+            <div class="collection-header"><center><h4>Yojna</h4></center></div>
+              <div>
+                <ul style="margin-left:5px;">
+                  <li><a href="https://www.indiafilings.com/learn/kisan-karz-mafi-yojana/">Kisan Karz Maafi Yojna</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End Weather Forecast -->
+
+  <!-- Start Info Section -->
+  <div class="row">
+    <div class="collection with-header"style="width: 20vw;height:51vh; float:left; overflow: scroll;">
+        <div class="collection-header"><center><h4>Latest News</h4></center></div>
+          <div>
+            <ul>
+              {% for key, val in fin %}
+                <li class="collection-item">
+                  <a href="{{ key }}" target="_blank">{{ val }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div>
+    <div class="card"  style="width:26%; height:50vh;float:left;padding: 10px;">
+        <div class="card-image waves-effect waves-block waves-light" style="height: 58%;">
+          <img class="activator" src="{% static 'images/top_crops.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Top Producing Sates<i class="material-icons right">more_vert</i></span>
+          <p><a href="http://www.walkthroughindia.com/offbeat/10-largest-agricultural-producing-states-of-india/">get more info...</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Top Producing Sates<i class="material-icons right">close</i></span>
+          <h4 class="center brown-text"><img src="{% static 'images/abc.png' %}" width="20%" height="20%"></h4>
+          <p class="light"><b><center> Rice - West Bengal<br> Wheat - Uttar Pradesh <br> Cotton - Gujrat <br> Jute - West Bengal <br> Tea - Assam </center></b></p>
+        </div>
+      </div>
+
+      <div class="card"  style="width:26%; height:50vh;float:left;padding: 10px;">
+          <div class="card-image waves-effect waves-block waves-light"  style="height: 58%;">
+            <img class="activator" src="{% static 'images/current_weather.jpeg' %}" width="100%" height="100%">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Weather Today<i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Weather Today<i class="material-icons right">close</i></span>
+            <h4 class="center brown-text"><img src="{% static 'images/m-cloudy.png' %}" width="20%" height="20%"></h4>
+            <p class="light"><b><center>You are at <span id='loc'></span>.<br> Current temperature is <span id='temp'></span><sup> o</sup>C<br> Humidity: <span id='humidity'></span>% <br></center></b></p>
+          </div>
+        </div>
+
+        <div class="card"  style="width:26%; height:50vh;float:left;padding:10px;">
+            <div class="card-image waves-effect waves-block waves-light"  style="height: 58%;">
+              <img class="activator" src="{% static 'images/msp.jpeg' %}" width="100%" height="100%">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Minimum Support Price<i class="material-icons right">more_vert</i></span>
+              <p><a href="#">This is a link</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Minimum Support Price<i class="material-icons right">close</i></span>
+              <h4 class="center brown-text"><img src="{% static 'images/msp.png' %}" width="20%" height="20%"></h4>
+              <p class="light"><b><center>Wheat - 1735/quintal <br> Rice - 1560/quintal <br> Maize - 1345/quintal <br> Mustard - 4000/quintal</center></b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+  <!-- <div class="container" style="float:unset">
+    <div class="section"> -->
+
+      <!--   Icon Section   -->
+      <!-- <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><img src="{% static 'images/agriculture.jpeg' %}"></h2>
+            <h5 class="center">Top Crop Producing States</h5>
+
+            <p class="light"><b><center> Rice - West Bengal<br> Wheat - Uttar Pradesh <br> Cotton - Gujrat <br> Jute - West Bengal <br> Tea - Assam </center></b></p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><img src="{% static 'images/m-cloudy.png' %}" height="120vh" width = "auto"></h2>
+            <h5 class="center">Weather Today</h5>
+
+            <p class="light"><b><center>You are at <span id='loc'></span>.<br> Current temperature is <span id='temp'></span><sup> o</sup>C<br> Humidity: <span id='humidity'></span>% <br></center></b></p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><img src="{% static 'images/msp.png' %}" height="120vw"></h2>
+            <h5 class="center">Minimum Support Price</h5>
+
+            <p class="light"><b><center>Wheat - 1735/quintal <br> Rice - 1560/quintal <br> Maize - 1345/quintal <br> Mustard - 4000/quintal</center></b></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+
+  <!-- Second Parallax Conatiner -->
+  <div class="parallax-container" style="display:block">
+    <div class="section no-pad-bot">
+      <div class="container">
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/back.jpg' %}"></div>
+  </div>
+  <!-- End Parallax Container -->
+
+
+
+  <div class="container" >
+      <div class="section">
+          <div class="row">
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h6 class="center brown-text">Top 5 crops</h6>
+              <form action="{% url 'home' %}" method="POST" >
+                {% csrf_token %}
+
+                State :
+                <input type="text" name = 'state' required>
+                Year : <input type="text" name = 'year' required>
+
+                <button type="submit" class="btn-small waves-effect waves-light teal lighten-1  ">Submit</button>
+              </form>
+
+            </div>
+          </div>
+
+          <div class="col s24 m8">
+              <div class="chart" id="chartContainer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+          <!--   Icon Section   -->
+          <div class="row">
+
+              <div class="col s12 m4">
+                  <div class="icon-block">
+                    <h6 class="center brown-text">Rainfall over years</h6>
+                    <form action="{% url 'home' %}" method="POST" >
+                      {% csrf_token %}
+                      State : <input type="text" name = 'rain_state' required><br>
+                      <button type="submit" class="btn-small waves-effect waves-light teal lighten-1  ">Submit</button>
+                    </form>
+
+                  </div>
+                </div>
+
+            <div class="col s24 m8">
+                <div class="chart" id="chartContainer2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header" style="padding-left:25px;"><h3>Agricultural Marketing</h3></div>
+      <div class="row" style="padding-left:25px;padding-right:20px;">
+        <div class="col s12 m4">
+          <form action="{% url 'farmer_trading' %}" method="post">
+              {% csrf_token %}
+              <label><b>Name: </b></label><input type="text" name="farmer_name"><br>
+              <label><b>Phone Number:</b></label><input type="text" name="phone"><br>
+              <label><b>Crop Name:</b></label><input type="text" name="crop_name"><br>
+              <label><b>Price:</b></label><input type="number" name="your_price"><br>
+              <button type="submit" class="btn btn-small">Submit</button>&nbsp;&nbsp;
+              <button type="reset" class="btn btn-small">Reset</button>
+            </form>
+        </div>
+        <div class="col s24 m8" style="overflow:scroll;height:400px;">
+            <div class="row">
+                <div class="collection with-header"style="overflow: scroll;">
+                    <div class="collection-header"><center><h4>Price By Farmers</h4><h6>If you are a trader and interested in the prices set up by our farmers, then contact.</h6></center></div>
+                      <div>
+                        <ul>
+                          {% for farmer in farmers_trade %}
+                            <li class="collection-item">
+                                  <p>
+                                    Name : {{ farmer.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Crop Name: {{ farmer.crop_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Name : {{ farmer.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Phone Number : {{ farmer.phone}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Price : {{ farmer.price }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    <a href="{% url 'sendSMS' %}">Send SMS</a>
+                                  </p>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding-left:25px;padding-right:20px;">
+          <div class="col s12 m4">
+            <form action="{% url 'trader_trading' %}" method="post">
+                {% csrf_token %}
+                <label><b>Name: </b></label><input type="text" name="farmer_name"><br>
+              <label><b>Phone Number:</b></label><input type="text" name="phone"><br>
+              <label><b>Crop Name:</b></label><input type="text" name="crop_name"><br>
+              <label><b>Price:</b></label><input type="number" name="your_price"><br>
+                <button type="submit" class="btn btn-small">Submit</button>&nbsp;&nbsp;
+                <button type="reset" class="btn btn-small">Reset</button>
+              </form>
+          </div>
+          <div class="col s24 m8" style="overflow:scroll;height:400px;">
+              <div class="row">
+                  <div class="collection with-header"style="overflow: scroll;">
+                      <div class="collection-header"><center><h4>Price By Traders</h4><h6>If you are a farmer and interested in the prices set up by the mentioned traders, then contact.</h6></center></div>
+                        <div>
+                          <ul>
+                            {% for trader in traders_trade %}
+                              <li class="collection-item">
+                                    <p>
+                                      Name : {{ trader.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Crop Name: {{ trader.crop_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Phone Number : {{ trader.phone}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                      Price : {{ trader.price }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                      <a href="#">Send SMS</a>
+                                    </p>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+                  </div>
+          </div>
+        </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/wheat.png' %}" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">Upaj</h5>
+          <p class="grey-text text-lighten-4">A chatbot aimed at making farming easier and bring the next green-tech revolution.</p>
+
+
+        </div>
+        <div class="col l5 s12">
+          <h5 class="white-text">Government Websites</h5>
+          <ul>
+            <li><a class="white-text" href="http://agriculture.gov.in/" target="_blank">Ministry of Agriculture & Farmers' Welfare</a></li>
+            <li><a class="white-text" href="https://farmer.gov.in/stateagridepartments.aspx" target="_blank">State Agriculture Departments</a></li>
+            <li><a class="white-text" href="http://www.agriwatch.com/" target="_blank">AgriWatch</a></li>
+            <li><a class="white-text" href="https://krishijagran.com/" target="_blank">KrishiJagram</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Developers</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/MehtaDevang">Devang Mehta</a></li>
+            <li><a class="white-text" href="https://github.com/anuj97">Anuj Upadhyay</a></li>
+            <li><a class="white-text" href="https://github.com/nmnme">Noman</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made with <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STart Slider Chat Pane -->
+  <div id="chat-pane">
+    <div class="chat">
+      <div class="chat-title">
+        <h1>Upaj</h1>
+        <h2>Here to Help</h2>
+        {% csrf_token %}
+        <figure class="avatar">
+          <img src="{% static 'images/chathead.png' %}" /></figure>
+      </div>
+      <div class="messages">
+        <div class="messages-content"></div>
+      </div>
+      <div class="message-box">
+        <textarea type="text" class="message-input" name="message-input" placeholder="Type message..."></textarea>
+        <button type="submit" class="message-submit">Send</button>
+      </div>
+    </div>
+  </div>
+  <!-- End Slider Chat Pane -->
+
+
+  <!--  Start Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script type="text/javascript" src = "{% static 'js/jquery.slidereveal.min.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'js/materialize.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'js/materialize.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script type="text/javascript" src = "{% static 'js/init.js' %}"></script>
+
+  <!-- End Scripts -->
+</body>
+</html>
